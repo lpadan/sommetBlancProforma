@@ -5,6 +5,7 @@ function onOpen(e) {
 	.addItem("Open Sidebar",'openSidebar')
 	.addToUi();
      ui.createMenu('Proforma')
+     .addItem('Assumptions','assumptions')
     .addItem('Update Proforma', 'updateProforma')
     .addToUi();
 }
