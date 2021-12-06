@@ -373,7 +373,7 @@ function updateProforma() {
         range = sheet.getRange("A2:B2");
         range.mergeAcross();
 
-        sheet.getRange("A1").setFontSize(14).setValue('Landmark Proforma');
+        sheet.getRange("A1").setFontSize(14).setValue('Sommet Blanc Proforma');
         sheet.getRange('A2').setFontSize(12).setHorizontalAlignment('left').setValue(headerDate);
 
         sheet.setRowHeight(4,25);
