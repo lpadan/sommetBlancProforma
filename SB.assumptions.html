@@ -9,9 +9,7 @@
 	<?!=include('SB.assumptions.css');?>
 </head>
 
-
 <body>
-
 
   <div class="row">
   	<div class="col s12" style="padding:0">
@@ -23,125 +21,305 @@
   		</ul>
   	</div>
 
-
     <div id="revenue" class="col s12">
 
+    	<h5 style="margin-top:40px">Sales</h5>
 
+        <section class='form-group'>
 
-        <div id="displayDetail">
+            <ul class="form-fields">
 
-        	<h5 style="margin-top:40px">Sales</h5>
+                <li>
+                    <label>Total Condo Sales</label>
+                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable">180,000,000</span>
+                    <input style='overflow:scroll; display:none' type="number" class="revenue-edit browser-default scrollable" value="180000000">
+                </li>
 
-            <section class='form-group'>
+                <li>
+                    <label>Condo Pre-Sales</label>
+                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable">75,000,000</span>
+                    <input style='overflow:scroll; display:none' type="number" class="revenue-edit browser-default scrollable" value="75000000">
+                </li>
 
-                <ul class="form-fields">
+                <li>
+                    <label>Condo Sales/Month</label>
+                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable">2,000,000</span>
+                    <input style='overflow:scroll; display:none' type="number" class="revenue-edit browser-default scrollable" value="2000000">
+                </li>
 
-                    <li>
-                        <label>Total Condo Sales</label>
-                        <span style='overflow:scroll; display:inline-block' class="scrollable">180,000,000</span>
-                    </li>
+                <li>
+                    <label>Listing Commission</label>
+                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable">3%</span>
+                    <input style='overflow:scroll; display:none' type="text" class="revenue-edit browser-default scrollable" value="3%">
+                </li>
 
-                    <li>
-                        <label>Condo Pre-Sales</label>
-                        <span style='overflow:scroll; display:inline-block' class="scrollable">75,000,000</span>
-                    </li>
+                <li>
+                    <label>Selling Commission</label>
+                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable">3%</span>
+                    <input style='overflow:scroll; display:none' type="text" class="revenue-edit browser-default scrollable" value="3%">
+                </li>
 
-                    <li>
-                        <label>Condo Sales/Month</label>
-                        <span style='overflow:scroll; display:inline-block' class="scrollable">2,000,000</span>
-                    </li>
+            </ul>
+        </section>
 
-                    <li>
-                        <label>Listing Commission</label>
-                        <span style='overflow:scroll; display:inline-block' class="scrollable">3%</span>
-                    </li>
-
-                    <li>
-                        <label>Selling Commission</label>
-                        <span style='overflow:scroll; display:inline-block' class="scrollable">3%</span>
-                    </li>
-
-                </ul>
-
-            </section>
-
-	        <div style="display:flex;flex-wrap:wrap">
-	            <h5 style="flex:1 0 175px">Earnest Money</h5><h5 style="flex:1 0 40px;text-align:center">%</h5><h5 style="flex:1 0 90px;text-align:center">Date</h5><h5 style="flex:1 0 175px;text-align:center">Milestone</h5><h5 style="flex:1 0 90px;text-align:center">Start/Finish</h5>
-	        </div>
-
-            <section class="form-group">
-
-                <ul class="form-fields">
-
-                    <li>
-	                    <label style="flex:1 0 200px">First EM Deposit</label>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="scrollable">10%</span>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable">Dec 7, 2021</span>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="scrollable">Milestone</span>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable">Start</span>
-                    </li>
-
-
-
-                    <li>
-                        <label style="flex:1 0 200px">Second EM Deposit</label>
-                        <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="scrollable">10%</span>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable"></span>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="scrollable">Shoring</span>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable">Start</span>
-                    </li>
-
-                    <li>
-                        <label style="flex:1 0 200px">Third EM Deposit</label>
-                        <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="scrollable">10%</span>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable"></span>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="scrollable">Concrete</span>
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable">Finish</span>
-                    </li>
-
-
-                </ul>
-
-            </section>
+        <div style="display:flex;flex-wrap:wrap">
+            <h5 style="flex:1 0 175px">Earnest Money</h5><h5 style="flex:1 0 40px;text-align:center">%</h5><h5 style="flex:1 0 90px;text-align:center">Date</h5><h5 style="flex:1 0 175px;text-align:center">Milestone</h5><h5 style="flex:1 0 90px;text-align:center">Start/Finish</h5>
         </div>
 
+        <section class="form-group">
 
-        <div style="position:fixed;bottom:0;left:580px;width:100%">
-            <a id="closeBtn" class="waves-effect waves-light btn-flat" onclick='google.script.host.close()'>Close</a>
-            <a id="editBtn" class="waves-effect waves-light btn">Edit</a>
+            <ul class="form-fields">
+
+                <li>
+                    <label style="flex:1 0 200px">First EM Deposit</label>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="revenue-display scrollable">10%</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable">Dec 7, 2021</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="revenue-display scrollable"></span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable">Start</span>
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="revenue-edit browser-default scrollable" value="10%">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="revenue-edit browser-default scrollable" value="Dec 7, 2021">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="revenue-edit browser-default scrollable" value="">
+                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='revenue-edit'>
+	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                    	<option>Finish</option>
+	                    	<option>Start</option>
+	                    </select>
+	                </div>
+                </li>
+
+                <li>
+                    <label style="flex:1 0 200px">Second EM Deposit</label>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="revenue-display scrollable">10%</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable"></span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="revenue-display scrollable">Shoring</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable">Start</span>
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="revenue-edit browser-default scrollable" value="10%">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="revenue-edit browser-default scrollable" value="">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="revenue-edit browser-default scrollable" value="Shoring">
+                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='revenue-edit'>
+	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                    	<option>Finish</option>
+	                    	<option>Start</option>
+	                    </select>
+	                </div>
+                </li>
+
+                <li>
+                    <label style="flex:1 0 200px">Third EM Deposit</label>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="revenue-display scrollable">10%</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable"></span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="revenue-display scrollable">Concrete</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable">Finish</span>
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="revenue-edit browser-default scrollable" value="10%">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="revenue-edit browser-default scrollable" value="">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="revenue-edit browser-default scrollable" value="Shoring">
+                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='revenue-edit'>
+	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                    	<option>Finish</option>
+	                    	<option>Start</option>
+	                    </select>
+	                </div>
+                </li>
+
+
+            </ul>
+        </section>
+
+	    <div id="displayRevenueBtns" style="position:fixed;bottom:0;left:580px;width:100%">
+            <a class="waves-effect waves-light btn-flat" onclick='google.script.host.close()'>Close</a>
+            <a id="editRevenueBtn" style="background-color:#4889f1" class="waves-effect waves-light btn">Edit</a>
         </div>
 
+        <div id="editRevenueBtns" style="position:fixed;bottom:0;left:580px;width:100%;display:none">
+            <a id="editRevenueCancelBtn" class="waves-effect waves-light btn-flat">Cancel</a>
+            <a id="editRevenueSaveBtn" style="background-color:#4889f1" class="waves-effect waves-light btn">Save</a>
+        </div>
     </div>
 
+    <div id="construction" class="col s12">
 
+    	<h5 style="margin-top:40px">Condominiums</h5>
 
+        <section class='form-group'>
+
+            <ul class="form-fields">
+
+                <li>
+                    <label>Consruction Cost</label>
+                    <span style='overflow:scroll; display:inline-block' class="construction-display scrollable">100,000,000</span>
+                    <input style='overflow:scroll; display:none' type="text" class="construction-edit browser-default scrollable" value="100000000">
+                </li>
+
+                <li>
+                    <label>Contingency</label>
+                    <span style='overflow:scroll; display:inline-block' class="construction-display scrollable">3%</span>
+                    <input style='overflow:scroll; display:none' type="text" class="construction-edit browser-default" class="scrollable" value="3%">
+                </li>
+
+                <li>
+                    <label>Construction Mgmt</label>
+                    <span style='overflow:scroll; display:inline-block' class="construction-display scrollable">2.5%</span>
+                    <input style='overflow:scroll; display:none' type="text" class="construction-edit browser-default" class="scrollable" value="2.5%">
+                </li>
+
+                <li>
+                    <label>Schedule Tab Name</label>
+                    <span style='overflow:scroll; display:inline-block' class="construction-display scrollable">Schedule</span>
+                    <input style='overflow:scroll; display:none' type="text" class="construction-edit browser-default" class="scrollable" value="Schedule">
+                </li>
+
+            </ul>
+        </section>
+
+        <div id="displayConstructionBtns" style="position:fixed;bottom:0;left:580px;width:100%">
+            <a class="waves-effect waves-light btn-flat" onclick='google.script.host.close()'>Close</a>
+            <a id="editConstructionBtn" style="background-color:#4889f1" class="waves-effect waves-light btn">Edit</a>
+        </div>
+
+        <div id="editConstructionBtns" style="position:fixed;bottom:0;left:580px;width:100%;display:none">
+            <a id="editConstructionCancelBtn" class="waves-effect waves-light btn-flat">Cancel</a>
+            <a id="editConstructionSaveBtn" style="background-color:#4889f1" class="waves-effect waves-light btn">Save</a>
+        </div>
     </div>
-
-
-    <div id="construction" class="col s12"><h3>Construction</h3>
-
-    	<!-- <span> tags for display -->
-
-    	<!-- <input> tags for editing -->
-
-    </div>
-
 
     <div id="expense" class="col s12"><h3>Expense</h3>
-
-    	<!-- <span> tags for display -->
-
-    	<!-- <input> tags for editing -->
-
     </div>
 
+    <div id="loans" class="col s12">
 
-    <div id="loans" class="col s12"><h3>Loans</h3>
+    	<h5 style="margin-top:40px">Acquisition Loan</h5>
 
-    	<!-- <span> tags for display -->
+        <section class='form-group'>
+            <ul class="form-fields">
 
-    	<!-- <input> tags for editing -->
+                <li>
+                    <label>Current Balance</label>
+                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable">2,400,000</span>
+                    <input style='overflow:scroll; display:none' type="number" class="loan-edit browser-default scrollable" value="2400000">
+                </li>
 
+                <li>
+                    <label>Interest Rate</label>
+                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable">12%</span>
+                    <input style='overflow:scroll; display:none' type="text" class="loan-edit browser-default scrollable" value="12%">
+                </li>
+
+                <li>
+                    <label>Interest Paid to Date</label>
+                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable">633,000</span>
+                    <input style='overflow:scroll; display:none' type="number" class="loan-edit browser-default scrollable" value="633000">
+                </li>
+
+            </ul>
+        </section>
+
+        <h5 style="margin-top:40px">Construction Loan</h5>
+
+        <section class="form-group">
+            <ul class="form-fields">
+
+                <li>
+                    <label>Estimated Loan Amount</label>
+                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable">80,000,000</span>
+                    <input style='overflow:scroll; display:none' type="number" class="loan-edit browser-default scrollable" value="80000000">
+                </li>
+
+                <li>
+                    <label>Interest Rate</label>
+                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable">12%</span>
+                    <input style='overflow:scroll; display:none' type="text" class="loan-edit browser-default scrollable" value="12%">
+                </li>
+
+            </ul>
+        </section>
+
+
+        <div style="display:flex;flex-wrap:wrap">
+            <h5 style="flex:1 0 175px">Construction Loan Fees</h5><h5 style="flex:1 0 40px;text-align:center">%</h5><h5 style="flex:1 0 90px;text-align:center">Date</h5><h5 style="flex:1 0 175px;text-align:center">Milestone</h5><h5 style="flex:1 0 90px;text-align:center">Start/Finish</h5>
+        </div>
+
+        <section class="form-group">
+            <ul class="form-fields">
+
+                <li>
+                    <label style="flex:1 0 200px">Broker Fee</label>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="loan-display scrollable">1%</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable"></span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="loan-display scrollable">Shoring</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable">Start</span>
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="loan-edit browser-default scrollable" value="10%">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="loan-edit browser-default scrollable" value="Dec 7, 2021">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="loan-edit browser-default scrollable" value="">
+                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='loan-edit'>
+	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                    	<option>Finish</option>
+	                    	<option>Start</option>
+	                    </select>
+	                </div>
+                </li>
+
+                <li>
+                    <label style="flex:1 0 200px">Origination Fee</label>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="loan-display scrollable">2%</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable"></span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="loan-display scrollable">Shoring</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable">Start</span>
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="loan-edit browser-default scrollable" value="10%">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="loan-edit browser-default scrollable" value="">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="loan-edit browser-default scrollable" value="Shoring">
+                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='loan-edit'>
+	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                    	<option>Finish</option>
+	                    	<option>Start</option>
+	                    </select>
+	                </div>
+                </li>
+
+                <li>
+                    <label style="flex:1 0 200px">Closeout Fee</label>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="loan-display scrollable">4%</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable"></span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="loan-display scrollable">Completion</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable">Finish</span>
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="loan-edit browser-default scrollable" value="10%">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="loan-edit browser-default scrollable" value="">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="loan-edit browser-default scrollable" value="Shoring">
+                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='loan-edit'>
+	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                    	<option>Finish</option>
+	                    	<option>Start</option>
+	                    </select>
+	                </div>
+                </li>
+
+                <li>
+                    <label style="flex:1 0 200px">Legal</label>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="loan-display scrollable">25,000</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable">Dec 2021</span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="loan-display scrollable"></span>
+                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable"></span>
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="loan-edit browser-default scrollable" value="10%">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="loan-edit browser-default scrollable" value="">
+                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="loan-edit browser-default scrollable" value="Shoring">
+                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='loan-edit'>
+	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                    	<option>Finish</option>
+	                    	<option>Start</option>
+	                    </select>
+	                </div>
+                </li>
+            </ul>
+        </section>
+
+	    <div id="displayLoanBtns" style="position:fixed;bottom:0;left:580px;width:100%">
+            <a class="waves-effect waves-light btn-flat" onclick='google.script.host.close()'>Close</a>
+            <a id="editLoanBtn" style="background-color:#4889f1" class="waves-effect waves-light btn">Edit</a>
+        </div>
+
+        <div id="editLoanBtns" style="position:fixed;bottom:0;left:580px;width:100%;display:none">
+            <a id="editLoanCancelBtn" class="waves-effect waves-light btn-flat">Cancel</a>
+            <a id="editLoanSaveBtn" style="background-color:#4889f1" class="waves-effect waves-light btn">Save</a>
+        </div>
     </div>
 
   </div>

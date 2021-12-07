@@ -1,7 +1,58 @@
 <script>
 
-  $(document).ready(function(){
-    $('.tabs').tabs();
-  });
+    $(document).ready(function(){
+        $('.tabs').tabs();
+    });
+
+    $('#editConstructionBtn').click(function(e) {
+        e.preventDefault();
+        $('#displayConstructionBtns').hide();
+        $('#editConstructionBtns').show();
+        $('.construction-display').hide();
+        $('.construction-edit').show();
+    });
+
+    $('#editConstructionCancelBtn').click(function(e) {
+        e.preventDefault();
+        $('#displayConstructionBtns').show();
+        $('#editConstructionBtns').hide();
+        $('.construction-display').show();
+        $('.construction-edit').hide();
+    });
+
+
+    $('#editRevenueBtn').click(function(e) {
+        e.preventDefault();
+        $('#displayRevenueBtns').hide();
+        $('#editRevenueBtns').show();
+        $('.revenue-display').hide();
+        $('.revenue-edit').show();
+    });
+
+    $('#editRevenueCancelBtn').click(function(e) {
+        e.preventDefault();
+        $('#displayRevenueBtns').show();
+        $('#editRevenueBtns').hide();
+        $('.revenue-display').show();
+        $('.revenue-edit').hide();
+    });
+
+    $('#editLoanBtn').click(function(e) {
+        e.preventDefault();
+        $('#displayLoanBtns').hide();
+        $('#editLoanBtns').show();
+        $('.loan-display').hide();
+        $('.loan-edit').show();
+    });
+
+    $('#editLoanCancelBtn').click(function(e) {
+        e.preventDefault();
+        $('#displayLoanBtns').show();
+        $('#editLoanBtns').hide();
+        $('.loan-display').show();
+        $('.loan-edit').hide();
+    });
+
+
 
 </script>
