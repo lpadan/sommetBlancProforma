@@ -9,6 +9,7 @@
 	<?!=include('SB.assumptions.css');?>
 </head>
 
+
 <body>
 
 
@@ -23,11 +24,96 @@
   	</div>
 
 
-    <div id="revenue" class="col s12"><h3>Revenue</h3>
+    <div id="revenue" class="col s12">
 
-    	<!-- <span> tags for display -->
 
-    	<!-- <input> tags for editing -->
+
+        <div id="displayDetail">
+
+        	<h5 style="margin-top:40px">Sales</h5>
+
+            <section class='form-group'>
+
+                <ul class="form-fields">
+
+                    <li>
+                        <label>Total Condo Sales</label>
+                        <span style='overflow:scroll; display:inline-block' class="scrollable">180,000,000</span>
+                    </li>
+
+                    <li>
+                        <label>Condo Pre-Sales</label>
+                        <span style='overflow:scroll; display:inline-block' class="scrollable">75,000,000</span>
+                    </li>
+
+                    <li>
+                        <label>Condo Sales/Month</label>
+                        <span style='overflow:scroll; display:inline-block' class="scrollable">2,000,000</span>
+                    </li>
+
+                    <li>
+                        <label>Listing Commission</label>
+                        <span style='overflow:scroll; display:inline-block' class="scrollable">3%</span>
+                    </li>
+
+                    <li>
+                        <label>Selling Commission</label>
+                        <span style='overflow:scroll; display:inline-block' class="scrollable">3%</span>
+                    </li>
+
+                </ul>
+
+            </section>
+
+	        <div style="display:flex;flex-wrap:wrap">
+	            <h5 style="flex:1 0 175px">Earnest Money</h5><h5 style="flex:1 0 40px;text-align:center">%</h5><h5 style="flex:1 0 90px;text-align:center">Date</h5><h5 style="flex:1 0 175px;text-align:center">Milestone</h5><h5 style="flex:1 0 90px;text-align:center">Start/Finish</h5>
+	        </div>
+
+            <section class="form-group">
+
+                <ul class="form-fields">
+
+                    <li>
+	                    <label style="flex:1 0 200px">First EM Deposit</label>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="scrollable">10%</span>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable">Dec 7, 2021</span>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="scrollable">Milestone</span>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable">Start</span>
+                    </li>
+
+
+
+                    <li>
+                        <label style="flex:1 0 200px">Second EM Deposit</label>
+                        <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="scrollable">10%</span>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable"></span>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="scrollable">Shoring</span>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable">Start</span>
+                    </li>
+
+                    <li>
+                        <label style="flex:1 0 200px">Third EM Deposit</label>
+                        <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="scrollable">10%</span>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable"></span>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="scrollable">Concrete</span>
+	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="scrollable">Finish</span>
+                    </li>
+
+
+                </ul>
+
+            </section>
+        </div>
+
+
+        <div style="position:fixed;bottom:0;left:580px;width:100%">
+            <a id="closeBtn" class="waves-effect waves-light btn-flat" onclick='google.script.host.close()'>Close</a>
+            <a id="editBtn" class="waves-effect waves-light btn">Edit</a>
+        </div>
+
+    </div>
+
+
 
     </div>
 
