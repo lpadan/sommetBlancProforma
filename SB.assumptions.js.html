@@ -53,6 +53,85 @@
         $('.loan-edit').hide();
     });
 
+        $('#editExpenseBtn').click(function(e) {
+        e.preventDefault();
+        $('#displayExpenseBtns').hide();
+        $('#editExpenseBtns').show();
+        $('.expense-display').hide();
+        $('.expense-edit').show();
+    });
+
+    $('#editExpenseCancelBtn').click(function(e) {
+        e.preventDefault();
+        $('#displayExpenseBtns').show();
+        $('#editExpenseBtns').hide();
+        $('.expense-display').show();
+        $('.expense-edit').hide();
+    });
+
+    $('#addExpenseBtn').click(function() {
+        addExpenseModal.open();
+    });
+
+    $('#deleteExpenseBtn').click(function() {
+        deleteExpenseModal.open();
+    });
+
+    $('#expenseCategory').change(function() {
+
+    });
+
+    $('#editExpenseSaveBtn').click(function(e) {
+        e.preventDefault();
+        // get land values
+        $('#land li').each(function() {
+            $(this).find('.land-expense').each(function() {
+                var nodeName = $(this).prop('nodeName');
+                if (nodeName == 'INPUT') {
+                    $(this).prev().text($(this).val());
+                } else if (nodeName == 'SELECT') {
+                    $(this).parent().prev().text($(this).val());
+                }
+
+                // build object
+
+                // save to document properties
+            });
+        });
+
+        // get hard cost values
+        $('#hardCosts li').each(function() {
+            $(this).find('.hard-cost-expense' ).each(function() {
+                var nodeName = $(this).prop('nodeName');
+                if (nodeName == 'INPUT') {
+                    $(this).prev().text($(this).val());
+                } else if (nodeName == 'SELECT') {
+                    $(this).parent().prev().text($(this).val());
+                }
+
+                // build object
+
+            });
+        });
+
+        // get soft cost values
+        $('#softCosts li').each(function() {
+            $(this).find('.soft-cost-expense' ).each(function() {
+
+                var nodeName = $(this).prop('nodeName');
+                if (nodeName == 'INPUT') {
+                    $(this).prev().text($(this).val());
+                } else if (nodeName == 'SELECT') {
+                    $(this).parent().prev().text($(this).val());
+                }
+
+                // build object
+
+            });
+        });
+
+    });
+
 
 
 </script>

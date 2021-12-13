@@ -592,7 +592,6 @@ function updateProforma() {
                             totalExpense[j] += arrayTemp[j];
                         }
                     }
-
                 break;
 
                 case '% of sales':
