@@ -86,12 +86,7 @@
         // get land values
         $('#land li').each(function() {
             $(this).find('.land-expense').each(function() {
-                var nodeName = $(this).prop('nodeName');
-                if (nodeName == 'INPUT') {
-                    $(this).prev().text($(this).val());
-                } else if (nodeName == 'SELECT') {
-                    $(this).parent().prev().text($(this).val());
-                }
+                $(this).prev().text($(this).val());
 
                 // build object
 
@@ -102,12 +97,7 @@
         // get hard cost values
         $('#hardCosts li').each(function() {
             $(this).find('.hard-cost-expense' ).each(function() {
-                var nodeName = $(this).prop('nodeName');
-                if (nodeName == 'INPUT') {
-                    $(this).prev().text($(this).val());
-                } else if (nodeName == 'SELECT') {
-                    $(this).parent().prev().text($(this).val());
-                }
+                $(this).prev().text($(this).val());
 
                 // build object
 
@@ -117,13 +107,7 @@
         // get soft cost values
         $('#softCosts li').each(function() {
             $(this).find('.soft-cost-expense' ).each(function() {
-
-                var nodeName = $(this).prop('nodeName');
-                if (nodeName == 'INPUT') {
-                    $(this).prev().text($(this).val());
-                } else if (nodeName == 'SELECT') {
-                    $(this).parent().prev().text($(this).val());
-                }
+                $(this).prev().text($(this).val());
 
                 // build object
 

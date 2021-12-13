@@ -21,47 +21,62 @@
   		</ul>
   	</div>
 
-    <div id="revenue" style="width:800px" class="col s12">
+    <div id="revenue" class="col s12">
 
     	<h5 style="margin-top:40px">Sales</h5>
 
-        <section style="width:600px" class='form-group'>
+        <section class='form-group'>
             <ul class="form-fields">
 
                 <li>
                     <label>Total Condo Sales</label>
-                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable left">180,000,000</span>
-                    <input style='overflow:scroll; display:none' type="number" class="revenue-edit browser-default scrollable" value="180000000">
+                    <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">180,000,000</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="revenue-edit browser-default scrollable" value="180000000">
+	                </div>
                 </li>
 
                 <li>
                     <label>Condo Pre-Sales</label>
-                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable left">75,000,000</span>
-                    <input style='overflow:scroll; display:none' type="number" class="revenue-edit browser-default scrollable" value="75000000">
+                    <div style="flex:0 0 200px;display:block">
+                    	<span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">75,000,000</span>
+                    	<input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="revenue-edit browser-default scrollable" value="75000000">
+                    </div>
                 </li>
 
                 <li>
                     <label>Condo Sales/Month</label>
-                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable left">2,000,000</span>
-                    <input style='overflow:scroll; display:none' type="number" class="revenue-edit browser-default scrollable" value="2000000">
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">2,000,000</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="revenue-edit browser-default scrollable" value="2000000">
+	                </div>
                 </li>
 
                 <li>
                     <label>Listing Commission</label>
-                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable left">3%</span>
-                    <input style='overflow:scroll; display:none' type="text" class="revenue-edit browser-default scrollable" value="3%">
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">3%</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="revenue-edit browser-default scrollable" value="3%">
+	                </div>
                 </li>
 
                 <li>
                     <label>Selling Commission</label>
-                    <span style='overflow:scroll; display:inline-block' class="revenue-display scrollable left">3%</span>
-                    <input style='overflow:scroll; display:none' type="text" class="revenue-edit browser-default scrollable" value="3%">
-                </li>
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px'  class="revenue-display scrollable left">3%</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="revenue-edit browser-default scrollable" value="3%">
+	                </div>
+	            </li>
+
             </ul>
         </section>
 
-        <div style="display:flex;flex-wrap:wrap">
-            <h5 style="flex:1 0 175px">Earnest Money</h5><h5 style="flex:1 0 40px;text-align:center">%</h5><h5 style="flex:1 0 90px;text-align:center">Date</h5><h5 style="flex:1 0 175px;text-align:center">Milestone</h5><h5 style="flex:1 0 90px;text-align:center">Start/Finish</h5>
+        <div style="display:flex;background-color: white;">
+            <h5 style="flex:0 0 200px">Earnest Money</h5>
+            <h5 style="flex:0 0 90px;text-align:center">%</h5>
+            <h5 style="flex:0 0 90px;text-align:center">Date</h5>
+            <h5 style="flex:0 0 110px;text-align:center">Milestone</h5>
+            <h5 style="flex:0 0 110px;text-align:center">Start/Finish</h5>
         </div>
 
         <section class="form-group">
@@ -69,38 +84,26 @@
             <ul class="form-fields">
 
                 <li>
-                    <label style="flex:1 0 200px">First EM Deposit</label>
+                    <label style="flex:0 0 200px">First EM Deposit</label>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="revenue-display scrollable">10%</span>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable">Dec 7, 2021</span>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="revenue-display scrollable"></span>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable">Start</span>
-
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="revenue-edit browser-default scrollable" value="10%">
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="revenue-edit browser-default scrollable" value="Dec 7, 2021">
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="revenue-edit browser-default scrollable" value="">
-
-                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='revenue-edit'>
-	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
+                    <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block"  class="revenue-display scrollable">10%</span>
+	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="10%">
 	                </div>
 
-                </li>
+                    <div style="flex:0 0 90px;display:block">
+                    	<span style="display: block"  class="revenue-display scrollable">Dec 2021</span>
+                    	<input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="Dec 2021">
+                    </div>
 
-                <li>
-                    <label style="flex:1 0 200px">Second EM Deposit</label>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="revenue-display scrollable">10%</span>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable"></span>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="revenue-display scrollable">Shoring</span>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable">Start</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="revenue-edit browser-default scrollable" value="10%">
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="revenue-edit browser-default scrollable" value="">
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="revenue-edit browser-default scrollable" value="Shoring">
-                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='revenue-edit'>
-	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                <div style="flex:0 0 110px;display:block">
+	                    <span style="display: block"  class="revenue-display scrollable"></span>
+	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="">
+	                </div>
+
+	                <div style="flex:0 0 110px;display:block">
+                    	<span style="display: block"  class="revenue-display scrollable">Start</span>
+	                    <select class="browser-default revenue-edit" style="display:none">
 	                    	<option value="">choose</option>
 	                    	<option value="finish">Finish</option>
 	                    	<option value="start">Start</option>
@@ -109,16 +112,26 @@
                 </li>
 
                 <li>
-                    <label style="flex:1 0 200px">Third EM Deposit</label>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="revenue-display scrollable">10%</span>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable"></span>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="revenue-display scrollable">Concrete</span>
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="revenue-display scrollable">Finish</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="revenue-edit browser-default scrollable" value="10%">
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="revenue-edit browser-default scrollable" value="">
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="revenue-edit browser-default scrollable" value="Shoring">
-                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='revenue-edit'>
-	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+                    <label style="flex:0 0 200px">Second EM Deposit</label>
+
+                    <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block" class="revenue-display scrollable">10%</span>
+	                    <input style="display:none"  type="text" class="revenue-edit browser-default scrollable" value="10%">
+	                </div>
+
+	                <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block"class="revenue-display scrollable"></span>
+	                    <input style="display:none"  type="text" class="revenue-edit browser-default scrollable" value="">
+	                </div>
+
+	                <div style="flex:0 0 110px;display:block">
+	                    <span style="display: block"class="revenue-display scrollable">Shoring</span>
+	                    <input style="display:none"  type="text" class="revenue-edit browser-default scrollable" value="Shoring">
+	                </div>
+
+	                <div style="flex:0 0 110px;display:block">
+	                    <span style="display: block" class="revenue-display scrollable">Start</span>
+	                    <select class="browser-default revenue-edit" style="display:none" >
 	                    	<option value="">choose</option>
 	                    	<option value="finish">Finish</option>
 	                    	<option value="start">Start</option>
@@ -126,6 +139,33 @@
 	                </div>
                 </li>
 
+                <li>
+                    <label style="flex:0 0 200px">Third EM Deposit</label>
+
+                    <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block" class="revenue-display scrollable">10%</span>
+	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="10%">
+	                </div>
+
+	                <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block" class="revenue-display scrollable"></span>
+	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="">
+	                </div>
+
+	                <div style="flex:0 0 110px;display:block">
+	                    <span style="display: block" class="revenue-display scrollable">Concrete</span>
+	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="Shoring">
+	                </div>
+
+	                <div style="flex:0 0 110px;display:block">
+	                    <span style="display: block" class="revenue-display scrollable">Finish</span>
+	                    <select class="browser-default revenue-edit" style="display:none">
+	                    	<option value="">choose</option>
+	                    	<option value="finish">Finish</option>
+	                    	<option value="start">Start</option>
+	                    </select>
+	                </div>
+                </li>
 
             </ul>
         </section>
@@ -150,27 +190,36 @@
             <ul class="form-fields">
 
                 <li>
-                    <label>Consruction Cost</label>
-                    <span style='overflow:scroll; display:inline-block' class="construction-display scrollable left">100,000,000</span>
-                    <input style='overflow:scroll; display:none' type="text" class="construction-edit browser-default scrollable" value="100000000">
+                    <label style="flex:0 0 200px">Consruction Cost</label>
+
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="construction-display scrollable left">100,000,000</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default scrollable" value="100000000">
+	                </div>
                 </li>
 
                 <li>
-                    <label>Contingency</label>
-                    <span style='overflow:scroll; display:inline-block' class="construction-display scrollable left">3%</span>
-                    <input style='overflow:scroll; display:none' type="text" class="construction-edit browser-default" class="scrollable" value="3%">
+                    <label style="flex:0 0 200px;display:block">Contingency</label>
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="construction-display scrollable left">3%</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default" class="scrollable" value="3%">
+	                </div>
                 </li>
 
                 <li>
-                    <label>Construction Mgmt</label>
-                    <span style='overflow:scroll; display:inline-block' class="construction-display scrollable left">2.5%</span>
-                    <input style='overflow:scroll; display:none' type="text" class="construction-edit browser-default" class="scrollable" value="2.5%">
+                    <label style="flex:0 0 200px;display:block">Construction Mgmt</label>
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px'class="construction-display scrollable left">2.5%</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default" class="scrollable" value="2.5%">
+	                </div>
                 </li>
 
                 <li>
-                    <label>Schedule Tab Name</label>
-                    <span style='overflow:scroll; display:inline-block' class="construction-display scrollable left">Schedule</span>
-                    <input style='overflow:scroll; display:none' type="text" class="construction-edit browser-default" class="scrollable" value="Schedule">
+                    <label style="flex:0 0 200px;display:block">Schedule Tab Name</label>
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="construction-display scrollable left">Schedule</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default" class="scrollable" value="Schedule">
+	                </div>
                 </li>
 
             </ul>
@@ -190,98 +239,91 @@
     <div id="loans" style="width:800px" class="col s12">
 
     	<h5 style="margin-top:40px">Acquisition Loan</h5>
-
         <section style="width:600px" class='form-group'>
             <ul class="form-fields">
 
                 <li>
-                    <label>Current Balance</label>
-                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable left">2,400,000</span>
-                    <input style='overflow:scroll; display:none' type="number" class="loan-edit browser-default scrollable" value="2400000">
+                    <label style="flex:0 0 200px">Current Balance</label>
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">2,400,000</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="loan-edit browser-default scrollable" value="2400000">
+	                </div>
                 </li>
 
                 <li>
-                    <label>Interest Rate</label>
-                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable left">12%</span>
-                    <input style='overflow:scroll; display:none' type="text" class="loan-edit browser-default scrollable" value="12%">
+                    <label style="flex:0 0 200px">Interest Rate</label>
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">12%</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="loan-edit browser-default scrollable" value="12%">
+	                </div>
                 </li>
 
                 <li>
-                    <label>Interest Paid to Date</label>
-                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable left">633,000</span>
-                    <input style='overflow:scroll; display:none' type="number" class="loan-edit browser-default scrollable" value="633000">
+                    <label style="flex:0 0 200px">Interest Paid to Date</label>
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">633,000</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="loan-edit browser-default scrollable" value="633000">
+	                </div>
                 </li>
 
             </ul>
         </section>
 
         <h5 style="margin-top:40px">Construction Loan</h5>
-
         <section style="width:600px" class="form-group">
             <ul class="form-fields">
 
                 <li>
-                    <label>Estimated Loan Amount</label>
-                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable left">80,000,000</span>
-                    <input style='overflow:scroll; display:none' type="number" class="loan-edit browser-default scrollable" value="80000000">
+                    <label style="flex:0 0 200px">Estimated Loan Amount</label>
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">80,000,000</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="loan-edit browser-default scrollable" value="80000000">
+	                </div>
                 </li>
 
                 <li>
-                    <label>Interest Rate</label>
-                    <span style='overflow:scroll; display:inline-block' class="loan-display scrollable left">12%</span>
-                    <input style='overflow:scroll; display:none' type="text" class="loan-edit browser-default scrollable" value="12%">
+                    <label style="flex:0 0 200px">Interest Rate</label>
+	                <div style="flex:0 0 200px;display:block">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">12%</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="loan-edit browser-default scrollable" value="12%">
+	                </div>
                 </li>
 
             </ul>
         </section>
 
-
         <div style="display:flex;flex-wrap:wrap">
-            <h5 style="flex:1 0 175px">Construction Loan Fees</h5><h5 style="flex:1 0 40px;text-align:center">%</h5><h5 style="flex:1 0 90px;text-align:center">Date</h5><h5 style="flex:1 0 175px;text-align:center">Milestone</h5><h5 style="flex:1 0 90px;text-align:center">Start/Finish</h5>
+            <h5 style="flex:0 0 200px">Construction Loan Fees</h5>
+            <h5 style="flex:0 0 90px;text-align:center">%</h5>
+            <h5 style="flex:0 0 90px;text-align:center">Date</h5>
+            <h5 style="flex:0 0 110px;text-align:center">Milestone</h5>
+            <h5 style="flex:0 0 110px;text-align:center">Start/Finish</h5>
         </div>
 
         <section class="form-group">
             <ul class="form-fields">
 
                 <li>
-                    <label style="flex:1 0 200px" class="label">Broker Fee</label>
+                    <label style="flex:0 0 200px" class="label">Broker Fee</label>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="loan-display scrollable left">1%</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="loan-edit browser-default scrollable" value="10%">
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable left"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="loan-edit browser-default scrollable" value="Dec 7, 2021">
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="loan-display scrollable left">Shoring</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="loan-edit browser-default scrollable" value="">
-
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable left">Start</span>
-                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='loan-edit'>
-	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
+                    <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block"  class="loan-display scrollable">1%</span>
+	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="10%">
 	                </div>
 
-                </li>
+	                <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block"  class="loan-display scrollable"></span>
+	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="Dec 2021">
+	                </div>
 
-                <li>
-                    <label style="flex:1 0 200px" class="label">Origination Fee</label>
+	                <div style="flex:0 0 110px;display:block">
+	                    <span style="display: block"  class="loan-display scrollable">Shoring</span>
+	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="loan-display scrollable left">2%</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="loan-edit browser-default scrollable" value="10%">
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable left"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="loan-edit browser-default scrollable" value="">
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="loan-display scrollable left">Shoring</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="loan-edit browser-default scrollable" value="Shoring">
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable left">Start</span>
-                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='loan-edit'>
-	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                <div style="flex:0 0 110px;display:block">
+                    	<span style="display: block" class="loan-display scrollable">Start</span>
+	                    <select class="browser-default loan-edit" style="display:none" >
 	                    	<option value="">choose</option>
 	                    	<option value="finish">Finish</option>
 	                    	<option value="start">Start</option>
@@ -290,20 +332,26 @@
                 </li>
 
                 <li>
-                    <label style="flex:1 0 200px" class="label">Closeout Fee</label>
+                    <label style="flex:0 0 200px" class="label">Origination Fee</label>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="loan-display scrollable">4%</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="loan-edit browser-default scrollable" value="10%">
+                    <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block" class="loan-display scrollable">2%</span>
+	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="10%">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="loan-edit browser-default scrollable" value="">
+	                <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block" class="loan-display scrollable"></span>
+	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="loan-display scrollable">Completion</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="loan-edit browser-default scrollable" value="Shoring">
+	                <div style="flex:0 0 110px;display:block">
+	                    <span style="display: block" class="loan-display scrollable">Shoring</span>
+	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="Shoring">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable">Finish</span>
-                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='loan-edit'>
-	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                <div style="flex:0 0 110px;display:block">
+                    	<span style="display: block" class="loan-display scrollable">Start</span>
+	                    <select class="browser-default loan-edit" style="display:none" >
 	                    	<option value="">choose</option>
 	                    	<option value="finish">Finish</option>
 	                    	<option value="start">Start</option>
@@ -312,20 +360,54 @@
                 </li>
 
                 <li>
-                    <label style="flex:1 0 200px" class="label">Legal</label>
+                    <label style="flex:0 0 200px" class="label">Closeout Fee</label>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 50px;text-align:center' class="loan-display scrollable">25,000</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 50px' type="text" class="loan-edit browser-default scrollable" value="10%">
+                    <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block" class="loan-display scrollable">4%</span>
+	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="10%">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable">Dec 2021</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="loan-edit browser-default scrollable" value="">
+	                <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block" class="loan-display scrollable"></span>
+	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 200px;text-align:center' class="loan-display scrollable"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 200px' type="text" class="loan-edit browser-default scrollable" value="Shoring">
+	                <div style="flex:0 0 110px;display:block">
+	                    <span style="display: block" class="loan-display scrollable">Completion</span>
+	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="Shoring">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="loan-display scrollable"></span>
-                    <div style='display:none;text-align:center;flex:1 0 110px;margin:0;padding:0' class='loan-edit'>
-	                    <select class="browser-default" style="height:38px;border:1px solid grey;margin:1px 0 0 0;padding: 0;text-align:center;">
+	                <div style="flex:0 0 110px;display:block">
+                    	<span style="display: block" class="loan-display scrollable">Finish</span>
+	                    <select class="browser-default loan-edit" style="display:none" >
+	                    	<option value="">choose</option>
+	                    	<option value="finish">Finish</option>
+	                    	<option value="start">Start</option>
+	                    </select>
+	                </div>
+                </li>
+
+                <li>
+                    <label style="flex:0 0 200px" class="label">Legal</label>
+
+                    <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block"  class="loan-display scrollable">25,000</span>
+	                    <input style="display:none" type="text" class="loan-edit browser-default scrollable" value="10%">
+	                </div>
+
+	                <div style="flex:0 0 90px;display:block">
+	                    <span style="display: block"  class="loan-display scrollable">Dec 2021</span>
+	                    <input style="display:none" type="text" class="loan-edit browser-default scrollable" value="">
+	                </div>
+
+	                <div style="flex:0 0 110px;display:block">
+	                    <span style="display: block"  class="loan-display scrollable"></span>
+	                    <input style="display:none" type="text" class="loan-edit browser-default scrollable" value="Shoring">
+	                </div>
+
+	                <div style="flex:0 0 110px;display:block">
+                    	<span style="display: block"  class="loan-display scrollable"></span>
+	                    <select class="browser-default loan-edit" style="display:none">
 	                    	<option value="">choose</option>
 	                    	<option value="finish">Finish</option>
 	                    	<option value="start">Start</option>
@@ -348,15 +430,15 @@
 
 	<div id="expense" style="width: 1000px" class="col s12">
 
-    	<div style="display:flex;flex-wrap:wrap;margin-top:15px">
-            <h5 style="flex:1 0 175px"></h5>
-            <h5 style="flex:1 0 75px;text-align:center">Paid</h5>
-            <h5 style="flex:1 0 90px;text-align:center">Future</h5>
-            <h5 style="flex:1 0 110px;text-align:center">Type</h5>
-            <h5 style="flex:1 0 90px;text-align:center">Start</h5>
-            <h5 style="flex:1 0 90px;text-align:center">Milestone</h5>
-            <h5 style="flex:1 0 110px;text-align:center">Start/Finish</h5>
-            <h5 style="flex:1 0 90px;text-align:center">Duration</h5>
+    	<div style="display:flex;margin-top:15px">
+            <h5 style="flex:0 0 200px"></h5>
+            <h5 style="flex:0 0 110px;text-align:center">Paid</h5>
+            <h5 style="flex:0 0 110px;text-align:center">Future</h5>
+            <h5 style="flex:0 0 110px;text-align:center">Type</h5>
+            <h5 style="flex:0 0 90px;text-align:center">Start</h5>
+            <h5 style="flex:0 0 110px;text-align:center">Milestone</h5>
+            <h5 style="flex:0 0 110px;text-align:center">Start/Finish</h5>
+            <h5 style="flex:0 0 90px;text-align:center">Duration</h5>
         </div>
 
     	<h5 style="margin-top:10px">Land</h5>
@@ -364,43 +446,53 @@
             <ul id="land" class="form-fields">
                 <li>
 
-                	<div style="flex:1 0 175px;display:inline-block">
-                    	<span class="expense-display label" name="description">Land Acquisition</span>
-                    	<input style="dispay: none;text-align: right;" type="text" name="description" class="expense-edit land-expense browser-default scrollable label" value="Land Acquisition">
+                	<div style="flex:0 0 200px;display:block">
+                    	<span style="display: block" class="expense-display label" name="description">Land Acquisition</span>
+                    	<input style="display:none;text-align: right;min-width:200px" type="text" name="description" class="expense-edit land-expense browser-default scrollable label" value="Land Acquisition">
                     </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 75px;text-align:center' class="expense-display scrollable" name="paid">2,400,000</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 75px' type="text" class="expense-edit land-expense browser-default scrollable" name="paid" value="2400000">
+                    <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style="display:block" class="expense-display scrollable" name="paid">2,400,000</span>
+	                    <input style='display:none' type="text" class="expense-edit land-expense browser-default scrollable" name="paid" value="2400000">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="future"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit land-expense browser-default scrollable" name="future" value="">
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style='display:block;text-align:center' class="expense-display scrollable" name="future"></span>
+	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="future" value="">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="type"></span>
-                    <div class='expense-edit'>
-	                    <select class="browser-default land-expense" name="type">
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type"></span>
+	                    <select style="display: none" class="browser-default expense-edit land-expense" name="type">
 	                    	<option value="">choose</option>
 	                    	<option value="lumpSum">lump sum</option>
 	                    	<option value="monthly">monthly</option>
 	                    </select>
+		            </div>
+
+		            <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start"></span>
+	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="start" value="">
 	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="start"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit land-expense browser-default scrollable" name="start" value="">
+	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone"></span>
+	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="milestone" value="">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="milestone"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit land-expense browser-default scrollable" name="milestone" value="">
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="startFinish"></span>
-                    <div class='expense-edit'>
-	                    <select class="browser-default land-expense" name="startFinish">
-	                    <option value="">choose</option>
+	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish"></span>
+	                    <select style="display: none" class="browser-default expense-edit land-expense" name="startFinish">
+	                    	<option value="">choose</option>
 	                    	<option value="finish">Finish</option>
 	                    	<option value="start">Start</option>
 	                    </select>
-	                </div>
+		            </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="duration"></span>
-	                <input style='overflow:scroll; display:none;text-align:center;flex:1 0 85px' type="text" class="expense-edit land-expense browser-default scrollable" name="duration" value="">
+		            <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration"></span>
+		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="duration" value="">
+		            </div>
 
                 </li>
             </ul>
@@ -410,157 +502,214 @@
         <section class="form-group">
             <ul id="hardCosts" class="form-fields">
                 <li>
-                    <span style="flex:1 0 175px" class="expense-display label" name="description">Retaining Wall</span>
-                    <input style="flex:1 0 165px" type="text" class="expense-edit hard-cost-expense browser-default scrollable label" name="description" value="Retaining Wall">
+                	<div style="flex:0 0 200px;display:block">
+	                    <span style="display: block" class="expense-display label" name="description">Retaining Wall</span>
+	                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit hard-cost-expense browser-default scrollable label" name="description" value="Retaining Wall">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 75px;text-align:center' class="expense-display scrollable" name="paid">800,000</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 75px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="paid" value="800000">
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style="display:block" class="expense-display scrollable" name="paid">800,000</span>
+	                    <input style='display:none' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="paid" value="800000">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="future">400,000</span>
-                     <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="future" value="400000">
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="type">lump sum</span>
-                   	<div class='expense-edit'>
-	                    <select class="browser-default hard-cost-expense" name="type">
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style="display:block" class="expense-display scrollable" name="future">400,000</span>
+	                     <input style='display:none' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="future" value="400000">
+	                </div>
+
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">lump sum</span>
+	                    <select style="display: none" class="browser-default hard-cost-expense expense-edit" name="type">
 	                    	<option>lump sum</option>
 	                    	<option>monthly</option>
 	                    </select>
 	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="start">Apr 2022</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="start" value="Apr 2022">
+	                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">Apr 2022</span>
+	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="start" value="Apr 2022">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="milestone"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="milestone" value="">
+	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone"></span>
+	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="milestone" value="">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="startFinish"></span>
-                    <div class='expense-edit'>
-	                    <select class="browser-default hard-cost-expense" name="startFinish">
+	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish"></span>
+	                    <select style="display: none" class="browser-default hard-cost-expense expense-edit land-expense" name="startFinish">
 	                    	<option value="">choose</option>
 	                    	<option value="finish">Finish</option>
 	                    	<option value="start">Start</option>
 	                    </select>
 	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="duration">2</span>
-	                <input style='overflow:scroll; display:none;text-align:center;flex:1 0 85px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="duration" value="2">
+	                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">2</span>
+		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="duration" value="2">
+		            </div>
                 </li>
 
                 <li>
-                    <span style="flex:1 0 175px" class="expense-display label" name="description">Lift Tower</span>
-                    <input style="flex:1 0 165px" type="text" class="expense-edit hard-cost-expense browser-default scrollable label" name="description" value="Lift Tower">
+                	<div style="flex:0 0 200px;display:block">
+	                    <span style="display: block" class="expense-display label" name="description">Lift Tower</span>
+	                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit hard-cost-expense browser-default scrollable label" name="description" value="Lift Tower">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 75px;text-align:center' class="expense-display  scrollable" name="paid">100,000</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 75px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="paid" value="100000">
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style="display:block" class="expense-display scrollable" name="paid">100,000</span>
+	                    <input style='display:none' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="paid" value="800000">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="future"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="future" value="">
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="type"></span>
-                    <div class='expense-edit'>
-	                    <select class="browser-default hard-cost-expense" name="type">
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style="display:block" class="expense-display scrollable" name="future"></span>
+	                     <input style='display:none' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="future" value="400000">
+	                </div>
+
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">lump sum</span>
+	                    <select style="display: none" class="browser-default hard-cost-expense expense-edit" name="type">
 	                    	<option>lump sum</option>
 	                    	<option>monthly</option>
 	                    </select>
 	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="start"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="start" value="">
+	                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start"></span>
+	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="start" value="Apr 2022">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="milestone"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="milestone" value="">
+	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone"></span>
+	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="milestone" value="">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="startFinish"></span>
-                    <div class='expense-edit'>
-	                    <select class="browser-default hard-cost-expense" name="startFinish">
+	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish"></span>
+	                    <select style="display: none" class="browser-default hard-cost-expense expense-edit land-expense" name="startFinish">
 	                    	<option value="">choose</option>
 	                    	<option value="finish">Finish</option>
 	                    	<option value="start">Start</option>
 	                    </select>
 	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="duration"></span>
-	                <input style='overflow:scroll; display:none;text-align:center;flex:1 0 85px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="duration"value="">
+	                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration"></span>
+		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="duration" value="2">
+		            </div>
                 </li>
+
             </ul>
         </section>
 
         <h5 style="margin-top:0">Soft Costs</h5>
         <section class="form-group">
             <ul id="softCosts" class="form-fields">
+
             	<li>
-	                    <span style="flex:1 0 175px" class="expense-display label" name="description">Sewer & Water Fees</span>
-	                    <input style="flex:1 0 165px" type="text" class="expense-edit soft-cost-expense browser-default scrollable label" name="description" value="Sewer & Water Fees">
+                	<div style="flex:0 0 200px;display:block">
+	                    <span style="display: block" class="expense-display label" name="description">Sewer & Water</span>
+	                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit soft-cost-expense browser-default scrollable label" name="description" value="Sewer & Water">
+	                </div>
 
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 75px;text-align:center' class="expense-display scrollable" name="paid">1,000,000</span>
-	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 75px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="paid" value="1000000">
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style="display:block" class="expense-display scrollable" name="paid">800,000</span>
+	                    <input style='display:none' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="paid" value="800000">
+	                </div>
 
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="future"></span>
-	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="future" value="">
 
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="type">lump sum</span>
-	                    <div class='expense-edit'>
-		                    <select class="browser-default soft-cost-expense" name="type">
-		                    	<option>lump sum</option>
-		                    	<option>monthly</option>
-		                    </select>
-		                </div>
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style="display:block" class="expense-display scrollable" name="future">400,000</span>
+	                     <input style='display:none' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="future" value="400000">
+	                </div>
 
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="start">Dec 2022</span>
-	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="start" value="Dec 2022">
-
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="milestone"></span>
-	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="milestone" value="">
-
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="startFinish"></span>
-	                    <div class='expense-edit'>
-		                    <select class="browser-default soft-cost-expense" name="startFinish">
-		                    	<option value="">choose</option>
-		                    	<option value="finish">Finish</option>
-		                    	<option value="start">Start</option>
-		                    </select>
-		                </div>
-
-	                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="duration">1</span>
-		                <input style='overflow:scroll; display:none;text-align:center;flex:1 0 85px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="duration" value="1">
-                </li>
-
-                <li>
-                    <span style="flex:1 0 175px" class="expense-display label" name="description">Recurring Marketing</span>
-                    <input style="flex:1 0 165px" type="text" class="expense-edit soft-cost-expense browser-default scrollable label" name="description" value="Recurring Marketing">
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 75px;text-align:center' class="expense-display scrollable" name="paid">500,000</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 75px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="paid" value="500000">
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="future">3,000</span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="future" value="3000">
-
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="type">monthly</span>
-                    <div class='expense-edit'>
-	                    <select class="browser-default soft-cost-expense" name="type">
-	                    	<option>lump sum</option>
-	                    	<option selected>monthly</option>
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">lump sum</span>
+	                    <select style="display: none" class="browser-default soft-cost-expense expense-edit" name="type">
+	                    	<option value=''>choose</option>
+	                    	<option value=lumpSum>lump sum</option>
+	                    	<option value="monthly">monthly</option>
 	                    </select>
 	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="start"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="start" value="">
+	                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">Apr 2022</span>
+	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="start" value="Apr 2022">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="milestone"></span>
-                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="milestone" value="">
+	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone"></span>
+	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="milestone" value="">
+	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 110px;text-align:center' class="expense-display scrollable" name="startFinish"></span>
-                    <div class='expense-edit'>
-	                    <select class="browser-default soft-cost-expense" name="startFinish">
+	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish"></span>
+	                    <select style="display: none" class="browser-default soft-cost-expense expense-edit land-expense" name="startFinish">
 	                    	<option value="">choose</option>
 	                    	<option value="finish">Finish</option>
 	                    	<option value="start">Start</option>
 	                    </select>
 	                </div>
 
-                    <span style='overflow:scroll; display:inline-block;flex:1 0 90px;text-align:center' class="expense-display scrollable" name="duration"></span>
-	                <input style='overflow:scroll; display:none;text-align:center;flex:1 0 85px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="duration" value="">
+	                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">2</span>
+		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="duration" value="2">
+		            </div>
                 </li>
+
+                <li>
+                	<div style="flex:0 0 200px;display:block">
+	                    <span style="display: block" class="expense-display label" name="description">Recurring Marketing</span>
+	                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit soft-cost-expense browser-default scrollable label" name="description" value="Recurring Marketing">
+	                </div>
+
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style="display:block" class="expense-display scrollable" name="paid">500,000</span>
+	                    <input style='display:none' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="paid" value="800000">
+	                </div>
+
+
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style="display:block" class="expense-display scrollable" name="future"></span>
+	                     <input style='display:none' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="future" value="3000">
+	                </div>
+
+	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">monthly</span>
+	                    <select style="display: none" class="browser-default soft-cost-expense expense-edit" name="type">
+	                    	<option value=''>choose</option>
+	                    	<option value=lumpSum>lump sum</option>
+	                    	<option value="monthly">monthly</option>
+	                    </select>
+	                </div>
+
+	                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start"></span>
+	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="start" value="Apr 2022">
+	                </div>
+
+	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone"></span>
+	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="milestone" value="">
+	                </div>
+
+	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish"></span>
+	                    <select style="display: none" class="browser-default soft-cost-expense expense-edit land-expense" name="startFinish">
+	                    	<option value="">choose</option>
+	                    	<option value="finish">Finish</option>
+	                    	<option value="start">Start</option>
+	                    </select>
+	                </div>
+
+	                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration"></span>
+		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="duration" value="">
+		            </div>
+                </li>
+
             </ul>
         </section>
 
