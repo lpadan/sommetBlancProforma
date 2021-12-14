@@ -20,7 +20,6 @@
         $('.construction-edit').hide();
     });
 
-
     $('#editRevenueBtn').click(function(e) {
         e.preventDefault();
         $('#displayRevenueBtns').hide();
@@ -53,7 +52,7 @@
         $('.loan-edit').hide();
     });
 
-        $('#editExpenseBtn').click(function(e) {
+    $('#editExpenseBtn').click(function(e) {
         e.preventDefault();
         $('#displayExpenseBtns').hide();
         $('#editExpenseBtns').show();
@@ -75,9 +74,6 @@
 
     $('#deleteExpenseBtn').click(function() {
         deleteExpenseModal.open();
-    });
-
-    $('#expenseCategory').change(function() {
     });
 
     $('#editExpenseSaveBtn').click(function(e) {
@@ -326,6 +322,267 @@
         google.script.run.withUserObject(this).withSuccessHandler(successSaveConstruction).saveConstruction(construction);
     });
 
+    $('#addExpenseSaveBtn').click(function(e){
+        e.preventDefault();
+        $(this).text('saving...');
+        var formArray = $('#addExpenseForm').serializeArray();
+        var formData = objectifyForm(formArray);
+        google.script.run.withUserObject(formData).withSuccessHandler(successAddExpense).addExpense(formData);
+    });
+
+    $('#expenseCategory').change(function() {
+        var category = $(this).val();
+        google.script.run.withUserObject(category).withSuccessHandler(successGetExpenseItems).getExpenseItems(category);
+    });
+
+    $('#deleteExpenseDeleteBtn').click(function(e) {
+        var category = $('#expenseCategory').val();
+        var item = $('#expenseItem').val();
+        if (!category || !item) return;
+        $(this).css('text-transform','none').text("Deleting...");
+        google.script.run.withUserObject(category).withSuccessHandler(successDeleteExpense).deleteExpense(category,item);
+    });
+
+    function successDeleteExpense(data,category) {
+        // returns the expense array e.g. land, hardCosts, softCosts with new row added and sorted a-z
+        $('#' + category).empty();
+
+        // convert data values to display values
+        var displayData= [];
+        var displayValue = '';
+        if (data.length) {
+            for (var i = 0; i < data.length; i++) {
+                displayData[i] = [];
+                for (var j = 0; j < 8; j++) {
+                    if (j == 1 || j == 2) {
+                        displayValue = formatNumber(data[i][j]);
+                    } else {
+                        displayValue = data[i][j];
+                    }
+                    displayData[i].push(displayValue);
+                }
+            }
+        } else {
+            displayData[0] = [];
+            for (var j = 0; j < 8; j++) {
+                displayData[0].push('');
+            }
+        }
+
+        var html = '';
+
+        for (var i = 0; i < data.length; i++) {
+            html += `
+
+            <li>
+                <div style="flex:0 0 200px;display:block">
+                    <span style="display: block" class="expense-display label" name="description">${data[i][0]}</span>
+                    <input style="display:none;text-align: right;min-width:200px" type="text" name="description" class="expense-edit land-expense browser-default scrollable label" value="${data[i][0]}">
+                </div>
+
+                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+                    <span style="display:block" class="expense-display scrollable" name="paid">${displayData[i][1]}</span>
+                    <input style='display:none' type="number" class="expense-edit land-expense browser-default scrollable" name="paid" value="${data[i][1]}">
+                </div>
+
+                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+                    <span style='display:block;text-align:center' class="expense-display scrollable" name="future">${displayData[i][2]}</span>
+                    <input style='overflow:scroll; display:none;text-align:center' type="number" class="expense-edit land-expense browser-default scrollable" name="future" value="${data[i][2]}">
+                </div>
+
+                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">${data[i][3]}</span>
+                        <select style="display: none" class="browser-default expense-edit land-expense" name="type">`;
+
+                        if (!data[i][3]) {
+                            html += `<option value="">choose</option>
+                                     <option value="lump sum">lump sum</option>
+                                     <option value="monthly">monthly</option>`
+                        } else if (data[i][3] == 'lump sum') {
+                            html += `<option value="">choose</option>
+                                     <option value="lump sum" selected>lump sum</option>
+                                     <option value="monthly">monthly</option>`
+                        } else if (data[i][3] == 'monthly') {
+                            html += `<option value="">choose</option>
+                                     <option value="lump sum">lump sum</option>
+                                     <option value="monthly" selected>monthly</option>`
+                        }
+                        html +=`
+
+                        </select>
+                    </div>
+
+                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">${data[i][4]}</span>
+                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="start" value="${data[i][4]}">
+                </div>
+
+                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone">${data[i][5]}</span>
+                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="milestone" value="${data[i][5]}">
+                </div>
+
+                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${data[i][6]}</span>
+                    <select style="display: none" class="browser-default expense-edit land-expense" name="startFinish">`;
+
+                    if (!data[i][6]) {
+                        html += `<option value="">choose</option>
+                                 <option value="finish">finish</option>
+                                 <option value="start">start</option>`
+                    } else if (data[i][6] == 'finish') {
+                        html += `<option value="">choose</option>
+                                 <option value="finish" selected>finish</option>
+                                 <option value="start">start</option>`
+                    } else if (data[i][6] == 'start') {
+                        html += `<option value="">choose</option>
+                                 <option value="finish">finish</option>
+                                 <option value="start" selected>start</option>`
+                    }
+                    html += `
+
+                    </select>
+                </div>
+
+                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">${data[i][7]}</span>
+                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="duration" value="${data[i][7]}">
+                </div>
+            </li>`;
+        }
+
+        $('#' + category).append(html);
+        $('#deleteExpenseDeleteBtn').css('text-transform','uppercase').text("DELETE");
+        deleteExpenseModal.close();
+
+        $('#expenseCategory').val('');
+        $('#expenseItem').html(
+            "<option>choose</option>"
+            );
+    }
+
+    function successGetExpenseItems(itemDescriptions,category) {
+        var html = '';
+        itemDescriptions.forEach(function(elem) {
+             html += `<option value="${elem}">${elem}</option>`;
+        });
+        $('#expenseItem').html(html);
+    }
+
+    function successAddExpense(data,formData) {
+        // returns the expense array e.g. land, hardCosts, softCosts with new row added and sorted a-z
+        var category = formData.category;
+        $('#' + category).empty();
+
+        // convert data values to display values
+        var displayData= [];
+        var displayValue = '';
+        if (data.length) {
+            for (var i = 0; i < data.length; i++) {
+                displayData[i] = [];
+                for (var j = 0; j < 8; j++) {
+                    if (j == 1 || j == 2) {
+                        displayValue = formatNumber(data[i][j]);
+                    } else {
+                        displayValue = data[i][j];
+                    }
+                    displayData[i].push(displayValue);
+                }
+            }
+        } else {
+            displayData[0] = [];
+            for (var j = 0; j < 8; j++) {
+                displayData[0].push('');
+            }
+        }
+
+        var html = '';
+
+        for (var i = 0; i < data.length; i++) {
+            html += `
+
+            <li>
+                <div style="flex:0 0 200px;display:block">
+                    <span style="display: block" class="expense-display label" name="description">${data[i][0]}</span>
+                    <input style="display:none;text-align: right;min-width:200px" type="text" name="description" class="expense-edit land-expense browser-default scrollable label" value="${data[i][0]}">
+                </div>
+
+                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+                    <span style="display:block" class="expense-display scrollable" name="paid">${displayData[i][1]}</span>
+                    <input style='display:none' type="number" class="expense-edit land-expense browser-default scrollable" name="paid" value="${data[i][1]}">
+                </div>
+
+                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+                    <span style='display:block;text-align:center' class="expense-display scrollable" name="future">${displayData[i][2]}</span>
+                    <input style='overflow:scroll; display:none;text-align:center' type="number" class="expense-edit land-expense browser-default scrollable" name="future" value="${data[i][2]}">
+                </div>
+
+                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">${data[i][3]}</span>
+                        <select style="display: none" class="browser-default expense-edit land-expense" name="type">`;
+
+                        if (!data[i][3]) {
+                            html += `<option value="">choose</option>
+                                     <option value="lump sum">lump sum</option>
+                                     <option value="monthly">monthly</option>`
+                        } else if (data[i][3] == 'lump sum') {
+                            html += `<option value="">choose</option>
+                                     <option value="lump sum" selected>lump sum</option>
+                                     <option value="monthly">monthly</option>`
+                        } else if (data[i][3] == 'monthly') {
+                            html += `<option value="">choose</option>
+                                     <option value="lump sum">lump sum</option>
+                                     <option value="monthly" selected>monthly</option>`
+                        }
+                        html +=`
+
+                        </select>
+                    </div>
+
+                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">${data[i][4]}</span>
+                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="start" value="${data[i][4]}">
+                </div>
+
+                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone">${data[i][5]}</span>
+                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="milestone" value="${data[i][5]}">
+                </div>
+
+                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${data[i][6]}</span>
+                    <select style="display: none" class="browser-default expense-edit land-expense" name="startFinish">`;
+
+                    if (!data[i][6]) {
+                        html += `<option value="">choose</option>
+                                 <option value="finish">finish</option>
+                                 <option value="start">start</option>`
+                    } else if (data[i][6] == 'finish') {
+                        html += `<option value="">choose</option>
+                                 <option value="finish" selected>finish</option>
+                                 <option value="start">start</option>`
+                    } else if (data[i][6] == 'start') {
+                        html += `<option value="">choose</option>
+                                 <option value="finish">finish</option>
+                                 <option value="start" selected>start</option>`
+                    }
+                    html += `
+
+                    </select>
+                </div>
+
+                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">${data[i][7]}</span>
+                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="duration" value="${data[i][7]}">
+                </div>
+            </li>`;
+        }
+
+        $('#' + category).append(html);
+        $('#addExpenseSaveBtn').text("Save");
+        addExpenseModal.close();
+    }
+
     function successSaveLoans(data,button) {
         $(button).text("Save");
         $('#editLoanCancelBtn').click();
@@ -346,7 +603,6 @@
         $('#editConstructionCancelBtn').click();
     }
 
-
     function formatNumber(number) {
         if (!number)return '';
         temp = Number(number);
@@ -355,6 +611,13 @@
         return formatted_value;
     }
 
+    function objectifyForm(formArray) {
+        var returnArray = {};
+        for (var i = 0; i < formArray.length; i++){
+            returnArray[formArray[i]['name']] = formArray[i]['value'];
+        }
+        return returnArray;
+    }
 
 
 </script>

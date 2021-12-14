@@ -14,74 +14,90 @@ var softCosts = expenses.softCosts;
 var hardCosts = expenses.hardCosts;
 var land = expenses.land;
 
+// console.log("softCosts = " + JSON.stringify(softCosts));
+
+// expenses.softCosts = [
+// 	["Alpha Soft Cost",'','','','','','',''],
+// 	["Beta Soft Cost",'','','','','','',''],
+// 	["Charlie Soft Cost",'','','','','','','']
+// ]
+
+// softCosts = expenses.softCosts;
+
+// documentProperties.setProperty('expenses', JSON.stringify(expenses));
+
 // expenses
 
+	// ADD
+	// all 3 categories below should be identical, other than variable names
+	// could make generic and eliminate 2 of them
+
 	// convert Land values to display values
-	var displayLand = [];
-	var displayValue = '';
-	if (land.length) {
-		for (var i = 0; i < land.length; i++) {
-			displayLand[i] = [];
-			for (var j = 0; j < 8; j++) {
-				if (j == 1 || j == 2) {
-					displayValue = formatNumber(land[i][j]);
-				} else {
-					displayValue = land[i][j];
+		var displayLand = [];
+		var displayValue = '';
+		if (land.length) {
+			for (var i = 0; i < land.length; i++) {
+				displayLand[i] = [];
+				for (var j = 0; j < 8; j++) {
+					if (j == 1 || j == 2) {
+						displayValue = formatNumber(land[i][j]);
+					} else {
+						displayValue = land[i][j];
+					}
+					displayLand[i].push(displayValue);
 				}
-				displayLand[i].push(displayValue);
+			}
+		} else {
+			displayLand[0] = [];
+			for (var j = 0; j < 8; j++) {
+				displayLand[0].push('');
 			}
 		}
-	} else {
-		displayLand[0] = [];
-		for (var j = 0; j < 8; j++) {
-			displayLand[0].push('');
-		}
-	}
 
 	// convert softCost values to display values
-	var displaySoftCosts = [];
-	var displayValue = '';
+		var displaySoftCosts = [];
+		var displayValue = '';
 
-	if (softCosts.length) {
-		for (var i = 0; i < softCosts.length; i++) {
-			displaySoftCosts[i] = [];
-			for (var j = 0; j < 8; j++) {
-				if (j == 1 || j == 2) {
-					displayValue = formatNumber(softCosts[i][j]);
-				} else {
-					displayValue = softCosts[i][j];
+		if (softCosts.length) {
+			for (var i = 0; i < softCosts.length; i++) {
+				displaySoftCosts[i] = [];
+				for (var j = 0; j < 8; j++) {
+					if (j == 1 || j == 2) {
+						displayValue = formatNumber(softCosts[i][j]);
+					} else {
+						displayValue = softCosts[i][j];
+					}
+					displaySoftCosts[i].push(displayValue);
 				}
-				displaySoftCosts[i].push(displayValue);
+			}
+		} else {
+			displaySoftCosts[0] = [];
+			for (var j = 0; j < 8; j++) {
+				displaySoftCosts[0].push('');
 			}
 		}
-	} else {
-		displaySoftCosts[0] = [];
-		for (var j = 0; j < 8; j++) {
-			displaySoftCosts[0].push('');
-		}
-	}
 
 	// convert hardCost values to display values
-	var displayHardCosts = [];
-	var displayValue = '';
-	if (hardCosts.length) {
-		for (var i = 0; i < hardCosts.length; i++) {
-			displayHardCosts[i] = [];
-			for (var j = 0; j < 8; j++) {
-				if (j == 1 || j == 2) {
-					displayValue = formatNumber(hardCosts[i][j]);
-				} else {
-					displayValue = hardCosts[i][j];
+		var displayHardCosts = [];
+		var displayValue = '';
+		if (hardCosts.length) {
+			for (var i = 0; i < hardCosts.length; i++) {
+				displayHardCosts[i] = [];
+				for (var j = 0; j < 8; j++) {
+					if (j == 1 || j == 2) {
+						displayValue = formatNumber(hardCosts[i][j]);
+					} else {
+						displayValue = hardCosts[i][j];
+					}
+					displayHardCosts[i].push(displayValue);
 				}
-				displayHardCosts[i].push(displayValue);
+			}
+		} else {
+			displayHardCosts[0] = [];
+			for (var j = 0; j < 8; j++) {
+				displayHardCosts[0].push('');
 			}
 		}
-	} else {
-		displayHardCosts[0] = [];
-		for (var j = 0; j < 8; j++) {
-			displayHardCosts[0].push('');
-		}
-	}
 
 // revenue
 
@@ -318,6 +334,7 @@ function formatNumber(number) {
 <body>
 
 <div class="row">
+
   	<div class="col s12" style="padding:0">
   		<ul class="tabs">
   			<li class="tab col s2"><a class='active' href="#revenue">Revenue</a></li>
@@ -420,28 +437,22 @@ function formatNumber(number) {
 
 		                <div style="flex:0 0 110px;display:block">
 	                    	<span style="display: block"  class="revenue-display scrollable">${displayEarnestMoney[i][3]}</span>
-		                    <select class="earnest-money-revenue browser-default revenue-edit" style="display:none">`;?>
-
-		                    <?!= html; ?><?
-
-			                html = '';
+		                    <select class="earnest-money-revenue browser-default revenue-edit" style="display:none">`;
 
 			                if (!earnestMoney[i][3]) {
-			                    html += '<option value="">choose</option>';
-			                    html += '<option value="finish">finish</option>';
-			                    html += '<option value="start">start</option>';
+			                    html += `<option value="">choose</option>
+			                    		 <option value="finish">finish</option>
+			                    		 <option value="start">start</option>`
 				            } else if (earnestMoney[i][3] == 'finish') {
-				            	html += '<option value="">choose</option>';
-			                    html += '<option value="finish" selected>finish</option>';
-			                    html += '<option value="start">start</option>';
+				            	html += `<option value="">choose</option>
+			                    		 <option value="finish" selected>finish</option>
+			                    		 <option value="start">start</option>`
 				            } else if (earnestMoney[i][3] == 'start') {
-				            	html += '<option value="">choose</option>';
-			                    html += '<option value="finish">finish</option>';
-			                    html += '<option value="start" selected>start</option>';
-				            } ?>
-
-				            <?!= html;?><?
-				            html = `
+				            	html += `<option value="">choose</option>
+			                    		 <option value="finish">finish</option>
+			                    		 <option value="start" selected>start</option>`
+				            }
+				            html += `
 
 		                    </select>
 		                </div>
@@ -452,63 +463,6 @@ function formatNumber(number) {
 					<?!= html; ?><?
 
             	} ?>
-
-
-				<!-- <li>
-                    <label style="flex:0 0 200px">Second EM Deposit</label>
-
-                    <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block" class="revenue-display scrollable">10%</span>
-	                    <input style="display:none"  type="text" class="revenue-edit browser-default scrollable" value="10%">
-	                </div>
-
-	                <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block"class="revenue-display scrollable"></span>
-	                    <input style="display:none"  type="text" class="revenue-edit browser-default scrollable" value="">
-	                </div>
-
-	                <div style="flex:0 0 110px;display:block">
-	                    <span style="display: block"class="revenue-display scrollable">Shoring</span>
-	                    <input style="display:none"  type="text" class="revenue-edit browser-default scrollable" value="Shoring">
-	                </div>
-
-	                <div style="flex:0 0 110px;display:block">
-	                    <span style="display: block" class="revenue-display scrollable">Start</span>
-	                    <select class="browser-default revenue-edit" style="display:none" >
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-	                </div>
-                </li>
-
-                <li>
-                    <label style="flex:0 0 200px">Third EM Deposit</label>
-
-                    <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block" class="revenue-display scrollable">10%</span>
-	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="10%">
-	                </div>
-
-	                <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block" class="revenue-display scrollable"></span>
-	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="">
-	                </div>
-
-	                <div style="flex:0 0 110px;display:block">
-	                    <span style="display: block" class="revenue-display scrollable">Concrete</span>
-	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="Shoring">
-	                </div>
-
-	                <div style="flex:0 0 110px;display:block">
-	                    <span style="display: block" class="revenue-display scrollable">Finish</span>
-	                    <select class="browser-default revenue-edit" style="display:none">
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-	                </div>
-                </li> -->
 
             </ul>
         </section>
@@ -691,28 +645,22 @@ function formatNumber(number) {
 
 		                <div style="flex:0 0 110px;display:block">
 	                    	<span style="display: block" class="loan-display scrollable">${displayLoanFees[i][4]}</span>
-		                    <select class="browser-default loan-edit fees-loans" style="display:none">`;?>
+		                    <select class="browser-default loan-edit fees-loans" style="display:none">`;
 
-		                    <?!= html; ?><?
-
-			                html = '';
-
-			                if (!loanFees[i][4]) {
-			                    html += '<option value="">choose</option>';
-			                    html += '<option value="finish">finish</option>';
-			                    html += '<option value="start">start</option>';
+		                    if (!loanFees[i][4]) {
+			                    html += `<option value="">choose</option>
+			                    		 <option value="finish">finish</option>
+			                    		 <option value="start">start</option>`
 				            } else if (loanFees[i][4] == 'finish') {
-				            	html += '<option value="">choose</option>';
-			                    html += '<option value="finish" selected>finish</option>';
-			                    html += '<option value="start">start</option>';
+				            	html += `<option value="">choose</option>
+			                    		 <option value="finish" selected>finish</option>
+			                    		 <option value="start">start</option>`
 				            } else if (loanFees[i][4] == 'start') {
-				            	html += '<option value="">choose</option>';
-			                    html += '<option value="finish">finish</option>';
-			                    html += '<option value="start" selected>start</option>';
-				            } ?>
-
-				            <?!= html;?><?
-				            html = `
+				            	html += `<option value="">choose</option>
+			                    		 <option value="finish">finish</option>
+			                    		 <option value="start" selected>start</option>`
+				            }
+				            html += `
 
 		                    </select>
 		                </div>
@@ -737,7 +685,7 @@ function formatNumber(number) {
 
 	<div id="expense" style="width: 1000px" class="col s12">
 
-    	<div style="display:flex;margin-top:15px">
+    	<div class="expense-header" style="display:flex;margin-top:15px">
             <h5 style="flex:0 0 200px"></h5>
             <h5 style="flex:0 0 110px;text-align:center">Paid</h5>
             <h5 style="flex:0 0 110px;text-align:center">Future</h5>
@@ -748,327 +696,315 @@ function formatNumber(number) {
             <h5 style="flex:0 0 90px;text-align:center">Duration</h5>
         </div>
 
-    	<h5 style="margin-top:10px">Land</h5>
-    	<section class="form-group">
-            <ul id="land" class="form-fields">
+        <div style="height:525px;overflow-y: scroll;">
 
-            	<?
-            	for (var i = 0; i < land.length; i++) {
- 					var html = `
+	    	<h5 style="margin-top:10px">Land</h5>
+	    	<section class="form-group">
+	            <ul id="land" class="form-fields">
 
-	 				<li>
+	            	<?
+	            	for (var i = 0; i < land.length; i++) {
+	 					var html = `
 
-	                	<div style="flex:0 0 200px;display:block">
-	                    	<span style="display: block" class="expense-display label" name="description">${land[i][0]}</span>
-	                    	<input style="display:none;text-align: right;min-width:200px" type="text" name="description" class="expense-edit land-expense browser-default scrollable label" value="${land[i][0]}">
-	                    </div>
+		 				<li>
 
-	                    <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-		                    <span style="display:block" class="expense-display scrollable" name="paid">${displayLand[i][1]}</span>
-		                    <input style='display:none' type="number" class="expense-edit land-expense browser-default scrollable" name="paid" value="${land[i][1]}">
-		                </div>
+		                	<div style="flex:0 0 200px;display:block">
+		                    	<span style="display: block" class="expense-display label" name="description">${land[i][0]}</span>
+		                    	<input style="display:none;text-align: right;min-width:200px" type="text" name="description" class="expense-edit land-expense browser-default scrollable label" value="${land[i][0]}">
+		                    </div>
 
-		                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-		                    <span style='display:block;text-align:center' class="expense-display scrollable" name="future">${displayLand[i][2]}</span>
-		                    <input style='overflow:scroll; display:none;text-align:center' type="number" class="expense-edit land-expense browser-default scrollable" name="future" value="${land[i][2]}">
-		                </div>
+		                    <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+			                    <span style="display:block" class="expense-display scrollable" name="paid">${displayLand[i][1]}</span>
+			                    <input style='display:none' type="number" class="expense-edit land-expense browser-default scrollable" name="paid" value="${land[i][1]}">
+			                </div>
 
-		                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">${land[i][3]}</span>
-		                    	<select style="display: none" class="browser-default expense-edit land-expense" name="type">`;?>
+			                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+			                    <span style='display:block;text-align:center' class="expense-display scrollable" name="future">${displayLand[i][2]}</span>
+			                    <input style='overflow:scroll; display:none;text-align:center' type="number" class="expense-edit land-expense browser-default scrollable" name="future" value="${land[i][2]}">
+			                </div>
 
-		                <?!= html; ?><?
+			                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+			                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">${land[i][3]}</span>
+			                    	<select style="display: none" class="browser-default expense-edit land-expense" name="type">`;
 
-		                html = '';
+					                if (!land[i][3]) {
+					                    html += `<option value="">choose</option>
+					                    		 <option value="lump sum">lump sum</option>
+					                    		 <option value="monthly">monthly</option>`
+						            } else if (land[i][3] == 'lump sum') {
+						            	html += `<option value="">choose</option>
+					                    		 <option value="lump sum" selected>lump sum</option>
+					                    		 <option value="monthly">monthly</option>`
+						            } else if (land[i][3] == 'monthly') {
+						            	html += `<option value="">choose</option>
+					                    		 <option value="lump sum">lump sum</option>
+					                    		 <option value="monthly" selected>monthly</option>`
+						            }
+					            	html +=`
 
-		                if (!land[i][3]) {
-		                    html += '<option value="">choose</option>';
-		                    html += '<option value="lump sum">lump sum</option>';
-		                    html += '<option value="monthly">monthly</option>';
-			            } else if (land[i][3] == 'lump sum') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="lump sum" selected>lump sum</option>';
-		                    html += '<option value="monthly">monthly</option>';
-			            } else if (land[i][3] == 'monthly') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="lump sum">lump sum</option>';
-		                    html += '<option value="monthly" selected>monthly</option>';
-			            } ?>
+					            	</select>
+					            </div>
 
-			            <?!= html;?><?
+				            <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+			                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">${land[i][4]}</span>
+			                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="start" value="${land[i][4]}">
+			                </div>
 
-			            html = `
+			                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
+			                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone">${land[i][5]}</span>
+			                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="milestone" value="${land[i][5]}">
+			                </div>
 
-				            	</select>
+			                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
+			                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${land[i][6]}</span>
+			                    <select style="display: none" class="browser-default expense-edit land-expense" name="startFinish">`;
+
+			                	if (!land[i][6]) {
+				                    html += `<option value="">choose</option>
+				                    		 <option value="finish">finish</option>
+				                    		 <option value="start">start</option>`
+					            } else if (land[i][6] == 'finish') {
+					            	html += `<option value="">choose</option>
+				                    		 <option value="finish" selected>finish</option>
+				                    		 <option value="start">start</option>`
+					            } else if (land[i][6] == 'start') {
+					            	html += `<option value="">choose</option>
+				                    		 <option value="finish">finish</option>
+				                    		 <option value="start" selected>start</option>`
+					            }
+				            	html += `
+
+			                    </select>
 				            </div>
 
-			            <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
-		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">${land[i][4]}</span>
-		                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="start" value="${land[i][4]}">
+				            <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+			                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">${land[i][7]}</span>
+				                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="duration" value="${land[i][7]}">
+				            </div>
+		                </li>
+
+						`; ?>
+
+						<?!= html; ?><?
+
+	            	} ?>
+	            </ul>
+	        </section>
+
+	        <h5 style="margin-top:0">Hard Costs</h5>
+	        <section class="form-group">
+	            <ul id="hardCosts" class="form-fields">
+
+	            	<?
+	            	for (var i = 0; i < hardCosts.length; i++) {
+	 					var html = `
+
+	                <li>
+	                	<div style="flex:0 0 200px;display:block">
+		                    <span style="display: block" class="expense-display label" name="description">${hardCosts[i][0]}</span>
+		                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit hard-cost-expense browser-default scrollable label" name="description" value="${hardCosts[i][0]}">
+		                </div>
+
+		                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+		                    <span style="display:block" class="expense-display scrollable" name="paid">${displayHardCosts[i][1]}</span>
+		                    <input style='display:none' type="number" class="expense-edit hard-cost-expense browser-default scrollable" name="paid" value="${hardCosts[i][1]}">
+		                </div>
+
+
+		                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+		                    <span style="display:block" class="expense-display scrollable" name="future">${displayHardCosts[i][2]}</span>
+		                     <input style='display:none' type="number" class="expense-edit hard-cost-expense browser-default scrollable" name="future" value="${hardCosts[i][2]}">
+		                </div>
+
+		                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">${hardCosts[i][3]}</span>
+		                    <select style="display: none" class="browser-default hard-cost-expense expense-edit" name="type">`;?>
+
+		                    <?!= html; ?><?
+
+			                html = '';
+
+			                if (!hardCosts[i][3]) {
+			                    html += '<option value="">choose</option>';
+			                    html += '<option value="lump sum">lump sum</option>';
+			                    html += '<option value="monthly">monthly</option>';
+				            } else if (hardCosts[i][3] == 'lump sum') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="lump sum" selected>lump sum</option>';
+			                    html += '<option value="monthly">monthly</option>';
+				            } else if (hardCosts[i][3] == 'monthly') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="lump sum">lump sum</option>';
+			                    html += '<option value="monthly" selected>monthly</option>';
+				            } ?>
+
+				            <?!= html;?><?
+
+				            html = `
+
+		                    </select>
+		                </div>
+
+		                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">${hardCosts[i][4]}</span>
+		                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="start" value="${hardCosts[i][4]}">
 		                </div>
 
 		                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
-		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone">${land[i][5]}</span>
-		                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="milestone" value="${land[i][5]}">
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone">${hardCosts[i][5]}</span>
+		                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="milestone" value="${hardCosts[i][5]}">
 		                </div>
 
 		                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
-		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${land[i][6]}</span>
-		                    <select style="display: none" class="browser-default expense-edit land-expense" name="startFinish">`; ?>
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${hardCosts[i][6]}</span>
+		                    <select style="display: none" class="browser-default hard-cost-expense expense-edit land-expense" name="startFinish">`;?>
 
-		                <?!= html; ?><?
+		                    <?!= html; ?><?
 
-		                html = '';
+			                html = '';
 
-		                if (!land[i][6]) {
-		                    html += '<option value="">choose</option>';
-		                    html += '<option value="finish">finish</option>';
-		                    html += '<option value="start">start</option>';
-			            } else if (land[i][6] == 'finish') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="finish" selected>finish</option>';
-		                    html += '<option value="start">start</option>';
-			            } else if (land[i][6] == 'start') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="finish">finish</option>';
-		                    html += '<option value="start" selected>start</option>';
-			            } ?>
+			                if (!hardCosts[i][6]) {
+			                    html += '<option value="">choose</option>';
+			                    html += '<option value="finish">finish</option>';
+			                    html += '<option value="start">start</option>';
+				            } else if (hardCosts[i][6] == 'finish') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="finish" selected>finish</option>';
+			                    html += '<option value="start">start</option>';
+				            } else if (hardCosts[i][6] == 'start') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="finish">finish</option>';
+			                    html += '<option value="start" selected>start</option>';
+				            } ?>
 
-			            <?!= html;?><?
-			            html = `
+				            <?!= html;?><?
+				            html = `
 
 		                    </select>
-			            </div>
+		                </div>
 
-			            <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
-		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">${land[i][7]}</span>
-			                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="duration" value="${land[i][7]}">
+		                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">${hardCosts[i][7]}</span>
+			                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="duration" value="${hardCosts[i][7]}">
+			            </div>
+	                </li>
+	                `; ?>
+
+						<?!= html; ?><?
+
+	            	} ?>
+	            </ul>
+	        </section>
+
+	        <h5 style="margin-top:0">Soft Costs</h5>
+	        <section class="form-group">
+	            <ul id="softCosts" class="form-fields">
+
+	            	<?
+	            	for (var i = 0; i < softCosts.length; i++) {
+	 					var html = `
+
+	            	<li>
+	                	<div style="flex:0 0 200px;display:block">
+		                    <span style="display: block" class="expense-display label" name="description">${softCosts[i][0]}</span>
+		                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit soft-cost-expense browser-default scrollable label" name="description" value="${softCosts[i][0]}">
+		                </div>
+
+		                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+		                    <span style="display:block" class="expense-display scrollable" name="paid">${displaySoftCosts[i][1]}</span>
+		                    <input style='display:none' type="number" class="expense-edit soft-cost-expense browser-default scrollable" name="paid" value="${softCosts[i][1]}">
+		                </div>
+
+
+		                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+		                    <span style="display:block" class="expense-display scrollable" name="future">${displaySoftCosts[i][2]}</span>
+		                     <input style='display:none' type="number" class="expense-edit soft-cost-expense browser-default scrollable" name="future" value="${softCosts[i][2]}">
+		                </div>
+
+		                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">${softCosts[i][3]}</span>
+		                    <select style="display: none" class="browser-default soft-cost-expense expense-edit" name="type">`;?>
+
+
+		                    <?!= html; ?><?
+
+			                html = '';
+
+			                if (!softCosts[i][3]) {
+			                    html += '<option value="">choose</option>';
+			                    html += '<option value="lump sum">lump sum</option>';
+			                    html += '<option value="monthly">monthly</option>';
+				            } else if (softCosts[i][3] == 'lump sum') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="lump sum" selected>lump sum</option>';
+			                    html += '<option value="monthly">monthly</option>';
+				            } else if (softCosts[i][3] == 'monthly') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="lump sum">lump sum</option>';
+			                    html += '<option value="monthly" selected>monthly</option>';
+				            } ?>
+
+				            <?!= html;?><?
+
+				            html = `
+
+
+		                    </select>
+		                </div>
+
+		                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">${softCosts[i][4]}</span>
+		                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="start" value="${softCosts[i][4]}">
+		                </div>
+
+		                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone">${softCosts[i][5]}</span>
+		                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="milestone" value="${softCosts[i][5]}">
+		                </div>
+
+		                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${softCosts[i][6]}</span>
+		                    <select style="display: none" class="browser-default soft-cost-expense expense-edit land-expense" name="startFinish">`;?>
+
+		                    <?!= html; ?><?
+
+			                html = '';
+
+			                if (!softCosts[i][6]) {
+			                    html += '<option value="">choose</option>';
+			                    html += '<option value="finish">finish</option>';
+			                    html += '<option value="start">start</option>';
+				            } else if (softCosts[i][6] == 'finish') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="finish" selected>finish</option>';
+			                    html += '<option value="start">start</option>';
+				            } else if (softCosts[i][6] == 'start') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="finish">finish</option>';
+			                    html += '<option value="start" selected>start</option>';
+				            } ?>
+
+				            <?!= html;?><?
+				            html = `
+
+		                    </select>
+		                </div>
+
+		                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
+		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">${softCosts[i][7]}</span>
+			                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="duration" value="${softCosts[i][7]}">
 			            </div>
 	                </li>
 
-					`; ?>
+	                `; ?>
 
-					<?!= html; ?><?
+						<?!= html; ?><?
 
-            	} ?>
+	            	} ?>
+	            </ul>
+	        </section>
 
-            </ul>
-        </section>
-
-        <h5 style="margin-top:0">Hard Costs</h5>
-        <section class="form-group">
-            <ul id="hardCosts" class="form-fields">
-
-            	<?
-            	for (var i = 0; i < hardCosts.length; i++) {
- 					var html = `
-
-                <li>
-                	<div style="flex:0 0 200px;display:block">
-	                    <span style="display: block" class="expense-display label" name="description">${hardCosts[i][0]}</span>
-	                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit hard-cost-expense browser-default scrollable label" name="description" value="${hardCosts[i][0]}">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style="display:block" class="expense-display scrollable" name="paid">${displayHardCosts[i][1]}</span>
-	                    <input style='display:none' type="number" class="expense-edit hard-cost-expense browser-default scrollable" name="paid" value="${hardCosts[i][1]}">
-	                </div>
-
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style="display:block" class="expense-display scrollable" name="future">${displayHardCosts[i][2]}</span>
-	                     <input style='display:none' type="number" class="expense-edit hard-cost-expense browser-default scrollable" name="future" value="${hardCosts[i][2]}">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">${hardCosts[i][3]}</span>
-	                    <select style="display: none" class="browser-default hard-cost-expense expense-edit" name="type">`;?>
-
-	                    <?!= html; ?><?
-
-		                html = '';
-
-		                if (!hardCosts[i][3]) {
-		                    html += '<option value="">choose</option>';
-		                    html += '<option value="lump sum">lump sum</option>';
-		                    html += '<option value="monthly">monthly</option>';
-			            } else if (hardCosts[i][3] == 'lump sum') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="lump sum" selected>lump sum</option>';
-		                    html += '<option value="monthly">monthly</option>';
-			            } else if (hardCosts[i][3] == 'monthly') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="lump sum">lump sum</option>';
-		                    html += '<option value="monthly" selected>monthly</option>';
-			            } ?>
-
-			            <?!= html;?><?
-
-			            html = `
-
-	                    </select>
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">${hardCosts[i][4]}</span>
-	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="start" value="${hardCosts[i][4]}">
-	                </div>
-
-	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone">${hardCosts[i][5]}</span>
-	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="milestone" value="${hardCosts[i][5]}">
-	                </div>
-
-	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${hardCosts[i][6]}</span>
-	                    <select style="display: none" class="browser-default hard-cost-expense expense-edit land-expense" name="startFinish">`;?>
-
-	                    <?!= html; ?><?
-
-		                html = '';
-
-		                if (!hardCosts[i][6]) {
-		                    html += '<option value="">choose</option>';
-		                    html += '<option value="finish">finish</option>';
-		                    html += '<option value="start">start</option>';
-			            } else if (hardCosts[i][6] == 'finish') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="finish" selected>finish</option>';
-		                    html += '<option value="start">start</option>';
-			            } else if (hardCosts[i][6] == 'start') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="finish">finish</option>';
-		                    html += '<option value="start" selected>start</option>';
-			            } ?>
-
-			            <?!= html;?><?
-			            html = `
-
-	                    </select>
-	                </div>
-
-	                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">${hardCosts[i][7]}</span>
-		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="duration" value="${hardCosts[i][7]}">
-		            </div>
-                </li>
-                `; ?>
-
-					<?!= html; ?><?
-
-            	} ?>
-
-            </ul>
-        </section>
-
-        <h5 style="margin-top:0">Soft Costs</h5>
-        <section class="form-group">
-            <ul id="softCosts" class="form-fields">
-
-            	<?
-            	for (var i = 0; i < softCosts.length; i++) {
- 					var html = `
-
-            	<li>
-                	<div style="flex:0 0 200px;display:block">
-	                    <span style="display: block" class="expense-display label" name="description">${softCosts[i][0]}</span>
-	                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit soft-cost-expense browser-default scrollable label" name="description" value="${softCosts[i][0]}">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style="display:block" class="expense-display scrollable" name="paid">${displaySoftCosts[i][1]}</span>
-	                    <input style='display:none' type="number" class="expense-edit soft-cost-expense browser-default scrollable" name="paid" value="${softCosts[i][1]}">
-	                </div>
-
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style="display:block" class="expense-display scrollable" name="future">${displaySoftCosts[i][2]}</span>
-	                     <input style='display:none' type="number" class="expense-edit soft-cost-expense browser-default scrollable" name="future" value="${softCosts[i][2]}">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">${softCosts[i][2]}</span>
-	                    <select style="display: none" class="browser-default soft-cost-expense expense-edit" name="type">`;?>
-
-
-	                    <?!= html; ?><?
-
-		                html = '';
-
-		                if (!softCosts[i][3]) {
-		                    html += '<option value="">choose</option>';
-		                    html += '<option value="lump sum">lump sum</option>';
-		                    html += '<option value="monthly">monthly</option>';
-			            } else if (softCosts[i][3] == 'lump sum') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="lump sum" selected>lump sum</option>';
-		                    html += '<option value="monthly">monthly</option>';
-			            } else if (softCosts[i][3] == 'monthly') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="lump sum">lump sum</option>';
-		                    html += '<option value="monthly" selected>monthly</option>';
-			            } ?>
-
-			            <?!= html;?><?
-
-			            html = `
-
-
-	                    </select>
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">${softCosts[i][4]}</span>
-	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="start" value="${softCosts[i][4]}">
-	                </div>
-
-	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone">${softCosts[i][5]}</span>
-	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="milestone" value="${softCosts[i][5]}">
-	                </div>
-
-	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${softCosts[i][6]}</span>
-	                    <select style="display: none" class="browser-default soft-cost-expense expense-edit land-expense" name="startFinish">`;?>
-
-	                    <?!= html; ?><?
-
-		                html = '';
-
-		                if (!hardCosts[i][6]) {
-		                    html += '<option value="">choose</option>';
-		                    html += '<option value="finish">finish</option>';
-		                    html += '<option value="start">start</option>';
-			            } else if (hardCosts[i][6] == 'finish') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="finish" selected>finish</option>';
-		                    html += '<option value="start">start</option>';
-			            } else if (hardCosts[i][6] == 'start') {
-			            	html += '<option value="">choose</option>';
-		                    html += '<option value="finish">finish</option>';
-		                    html += '<option value="start" selected>start</option>';
-			            } ?>
-
-			            <?!= html;?><?
-			            html = `
-
-	                    </select>
-	                </div>
-
-	                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">${softCosts[i][7]}</span>
-		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="duration" value="${softCosts[i][7]}">
-		            </div>
-                </li>
-
-                `; ?>
-
-					<?!= html; ?><?
-
-            	} ?>
-
-            </ul>
-        </section>
+	    </div>
 
         <div id="displayExpenseBtns" style="position:fixed;bottom:0;left:0px;width:100%">
             <a id="addExpenseBtn" style="background-color:#4889f1" class="waves-effect waves-light btn">Add</a>
@@ -1087,82 +1023,87 @@ function formatNumber(number) {
 <div id="addExpenseModal" style="width:700px;height:400px" class="modal modal-fixed-footer" >
 	<div class="modal-content">
 		<h5 style="margin-top:0;margin-bottom:20px">Add Expense</h5>
-		<div style="display:flex;margin-top:40px">
 
-			<div style="flex:33%;margin:0 20px 0 20px">
+		<form id='addExpenseForm'>
 
-				<div class="input-field" >
-					<select class="">
-						<option>Land</option>
-						<option>Hard Cost</option>
-						<option>Soft Cost</option>
-					</select>
-					<label>Expense Category</label>
+			<div style="display:flex;margin-top:40px">
+
+				<div style="flex:33%;margin:0 20px 0 20px">
+
+					<div class="input-field" >
+						<select class="" name="category">
+							<option value="land">Land</option>
+							<option value="hardCosts">Hard Cost</option>
+							<option value="softCosts">Soft Cost</option>
+						</select>
+						<label>Expense Category</label>
+					</div>
+
+					<div class="input-field" style="margin-top: 23px;">
+			          	<input id="description" type="text" class="" name="description">
+			          	<label for="description">Description</label>
+			        </div>
+
+
+					<div class="input-field" style="margin-top:16px">
+			          	<input id="paid" type="number" class="" name="paidCosts">
+			          	<label for="paid">Paid Costs</label>
+			        </div>
+
 				</div>
 
-				<div class="input-field" style="margin-top: 23px;">
-		          	<input id="description" type="text" class="">
-		          	<label for="description">Description</label>
-		        </div>
+
+				<div style="flex:33%;margin:0 20px 0 20px">
+
+					<div class="input-field">
+			          	<input id="future" type="number" class="" name="futureCosts">
+			          	<label for="future">Future Costs</label>
+			        </div>
+
+			        <div class="input-field">
+						<select class="" name="type">
+							<option value="lump sum">Lump Sum</option>
+							<option value="monthly">Monthly</option>
+						</select>
+						<label>Type</label>
+					</div>
+
+					<div class="input-field" style="margin-top:22px">
+						<input id="startDate" type="text" class="datepicker" name="startDate">
+						<label for="startDate">Start Date</label>
+					</div>
 
 
-				<div class="input-field" style="margin-top:16px">
-		          	<input id="paid" type="number" class="">
-		          	<label for="paid">Paid Costs</label>
-		        </div>
+				</div>
 
 
+				<div style="flex:33%;margin:0 20px 0 20px">
+
+					<div class="input-field">
+			          	<input id="milestone" type="text" class="" name="milestone">
+			          	<label for="milestone">Milestone</label>
+			        </div>
+
+			        <div class="input-field">
+						<select class="" name="startFinish">
+							<option value="start">Start</option>
+							<option value="finish">Finish</option>
+						</select>
+						<label>Start/Finish</label>
+					</div>
+
+					<div class="input-field" style="margin-top:22px">
+			          	<input id="duration" type="number" class="" name="duration">
+			          	<label for="duration">Duration</label>
+			        </div>
+
+			    </div>
 
 			</div>
 
-
-			<div style="flex:33%;margin:0 20px 0 20px">
-				<div class="input-field">
-		          	<input id="future" type="number" class="">
-		          	<label for="future">Future Costs</label>
-		        </div>
-
-		        <div class="input-field">
-					<select class="">
-						<option>Lump Sum</option>
-						<option>Monthly</option>
-					</select>
-					<label>Type</label>
-				</div>
-
-				<div class="input-field" style="margin-top:22px">
-					<input id="startDate" type="text" class="datepicker">
-					<label for="startDate">Start Date</label>
-				</div>
+		</form>
 
 
-			</div>
-
-
-			<div style="flex:33%;margin:0 20px 0 20px">
-
-				<div class="input-field">
-		          	<input id="milestone" type="text" class="">
-		          	<label for="milestone">Milestone</label>
-		        </div>
-
-		        <div class="input-field">
-					<select class="">
-						<option>Start</option>
-						<option>Finish</option>
-					</select>
-					<label>Start/Finish</label>
-				</div>
-
-				<div class="input-field" style="margin-top:22px">
-		          	<input id="duration" type="number" class="">
-		          	<label for="duration">Duration</label>
-		        </div>
-
-		    </div>
-
-
-		</div>
 	</div>
 	<div class="modal-footer" style="margin-bottom:20px;padding:15px">
 		<a data-value="cancel" class="modal-close waves-effect waves-light btn-flat">Cancel</a>
@@ -1181,6 +1122,7 @@ function formatNumber(number) {
 			<div style="width:200px;flex:1;padding:0 15px 0 15px">
 				<label>Category</label>
 				<select id="expenseCategory" class="browser-default">
+					<option value="">choose</option>
 					<option value="land">Land</option>
 					<option value="hardCosts">Hard Costs</option>
 					<option value="softCosts">Soft Costs</option>
@@ -1192,11 +1134,7 @@ function formatNumber(number) {
 				<label>Line Item</label>
 				<select id="expenseItem" class="browser-default">
 					<option>choose Item</option>
-					<option>Test 1</option>
-					<option>Test 2</option>
-					<option>Test 3</option>
 				</select>
-
 			</div>
 
 		</div>
@@ -1204,9 +1142,6 @@ function formatNumber(number) {
 
 	</div>
 	<div class="modal-footer" style="margin-bottom:20px;padding:15px">
-
-
-
 		<a data-value="cancel" class="modal-close waves-effect btn-flat">Cancel</a>
 		<a id="deleteExpenseDeleteBtn" style="background-color:#4889f1" class="waves-effect waves-light btn">Delete</a>
 	</div>
@@ -1245,7 +1180,6 @@ function formatNumber(number) {
 	var elem2 = document.getElementById('deleteExpenseModal');
 	var addExpenseModal = M.Modal.init(elem, addOptions);
 	var deleteExpenseModal = M.Modal.init(elem2, deleteOptions);
-
 </script>
 
 </body>
