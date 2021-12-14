@@ -15,3 +15,18 @@ function saveExpenses(expenses) {
    var documentProperties = PropertiesService.getDocumentProperties();
    documentProperties.setProperty('expenses', JSON.stringify(expenses));
 }
+
+function saveRevenue(revenue) {
+   var documentProperties = PropertiesService.getDocumentProperties();
+   documentProperties.setProperty('revenue', JSON.stringify(revenue));
+}
+
+function saveConstruction(construction) {
+   var documentProperties = PropertiesService.getDocumentProperties();
+   documentProperties.setProperty('construction', JSON.stringify(construction));
+}
+
+function saveLoans(loans) {
+   var documentProperties = PropertiesService.getDocumentProperties();
+   documentProperties.setProperty('loans', JSON.stringify(loans));
+}

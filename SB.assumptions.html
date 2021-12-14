@@ -1,6 +1,7 @@
 <?
 var documentProperties = PropertiesService.getDocumentProperties();
 var expenses = documentProperties.getProperty('expenses');
+
 if (expenses) {
 	expenses = JSON.parse(expenses);
 } else {
@@ -13,77 +14,288 @@ var softCosts = expenses.softCosts;
 var hardCosts = expenses.hardCosts;
 var land = expenses.land;
 
-console.log(hardCosts);
+// expenses
 
-// convert Land values to display values
-var displayLand = [];
-var displayValue = '';
-if (land.length) {
-	for (var i = 0; i < land.length; i++) {
-		displayLand[i] = [];
-		for (var j = 0; j < 8; j++) {
-			if (j == 1 || j == 2) {
-				displayValue = formatNumber(land[i][j]);
-			} else {
-				displayValue = land[i][j];
+	// convert Land values to display values
+	var displayLand = [];
+	var displayValue = '';
+	if (land.length) {
+		for (var i = 0; i < land.length; i++) {
+			displayLand[i] = [];
+			for (var j = 0; j < 8; j++) {
+				if (j == 1 || j == 2) {
+					displayValue = formatNumber(land[i][j]);
+				} else {
+					displayValue = land[i][j];
+				}
+				displayLand[i].push(displayValue);
 			}
-			displayLand[i].push(displayValue);
+		}
+	} else {
+		displayLand[0] = [];
+		for (var j = 0; j < 8; j++) {
+			displayLand[0].push('');
 		}
 	}
-} else {
-	displayLand[0] = [];
-	for (var j = 0; j < 8; j++) {
-		dipslayLand[0].push('');
-	}
-}
 
-// convert softCost values to display values
-var displaySoftCosts = [];
-var displayValue = '';
-if (softCosts.length) {
-	for (var i = 0; i < softCosts.length; i++) {
-		displaySoftCosts[i] = [];
-		for (var j = 0; j < 8; j++) {
-			if (j == 1 || j == 2) {
-				displayValue = formatNumber(softCosts[i][j]);
-			} else {
-				displayValue = softCosts[i][j];
+	// convert softCost values to display values
+	var displaySoftCosts = [];
+	var displayValue = '';
+
+	if (softCosts.length) {
+		for (var i = 0; i < softCosts.length; i++) {
+			displaySoftCosts[i] = [];
+			for (var j = 0; j < 8; j++) {
+				if (j == 1 || j == 2) {
+					displayValue = formatNumber(softCosts[i][j]);
+				} else {
+					displayValue = softCosts[i][j];
+				}
+				displaySoftCosts[i].push(displayValue);
 			}
-			displaySoftCosts[i].push(displayValue);
+		}
+	} else {
+		displaySoftCosts[0] = [];
+		for (var j = 0; j < 8; j++) {
+			displaySoftCosts[0].push('');
 		}
 	}
-} else {
-	displaySoftCosts[0] = [];
-	for (var j = 0; j < 8; j++) {
-		dipslaySoftCosts[0].push('');
-	}
-}
 
-// convert hardCost values to display values
-var displayHardCosts = [];
-var displayValue = '';
-if (hardCosts.length) {
-	for (var i = 0; i < hardCosts.length; i++) {
-		displayHardCosts[i] = [];
-		for (var j = 0; j < 8; j++) {
-			if (j == 1 || j == 2) {
-				displayValue = formatNumber(hardCosts[i][j]);
-			} else {
-				displayValue = hardCosts[i][j];
+	// convert hardCost values to display values
+	var displayHardCosts = [];
+	var displayValue = '';
+	if (hardCosts.length) {
+		for (var i = 0; i < hardCosts.length; i++) {
+			displayHardCosts[i] = [];
+			for (var j = 0; j < 8; j++) {
+				if (j == 1 || j == 2) {
+					displayValue = formatNumber(hardCosts[i][j]);
+				} else {
+					displayValue = hardCosts[i][j];
+				}
+				displayHardCosts[i].push(displayValue);
 			}
-			displayHardCosts[i].push(displayValue);
+		}
+	} else {
+		displayHardCosts[0] = [];
+		for (var j = 0; j < 8; j++) {
+			displayHardCosts[0].push('');
 		}
 	}
-} else {
-	displayHardCosts[0] = [];
-	for (var j = 0; j < 8; j++) {
-		dipslayHardCosts[0].push('');
+
+// revenue
+
+	var revenue = documentProperties.getProperty('revenue');
+
+	if (revenue) {
+		revenue = JSON.parse(revenue);
+	} else {
+		revenue = {};
+		revenue.sales = ['','','','',''];
+		revenue.earnestMoney = [
+			['','','',''],
+			['','','',''],
+			['','','','']
+		];
+		documentProperties.setProperty('revenue',JSON.stringify(revenue));
 	}
-}
+
+	var sales = revenue.sales;
+	var earnestMoney = revenue.earnestMoney;
+	var displayValue = '';
+
+	// sales
+	var displaySales = [];
+	if (sales.length) {
+		displaySales = [];
+		for (var i = 0; i < sales.length; i++) {
+			if (i == 3 || i == 4) {
+				if (sales[i]) {
+					displayValue = sales[i] * 100 + '%';
+				} else {
+					displayValue = '';
+				}
+			} else if (sales[i]) {
+				displayValue = formatNumber(sales[i]);
+			} else {
+				displayValue = '';
+			}
+			displaySales.push(displayValue);
+		}
+	} else {
+		for (var j = 0; j < 5; j++) {
+			displaySales.push('');
+		}
+	}
+
+	// earnest money
+	var displayEarnestMoney = [];
+
+	for (var i = 0; i < 3; i++) {
+		displayEarnestMoney[i] = [];
+		for (var j = 0; j < 5; j++) {
+			var displayValue = '';
+			// if (j == 0) {
+			// 	displayValue = earnestMoney[i][0];
+			// }
+			if (j == 0) {
+				if (earnestMoney[i][0]) {
+					displayValue = earnestMoney[i][0] * 100 + '%';
+				} else {
+					displayValue = '';
+				}
+			}
+			if (j > 0) {
+				displayValue = earnestMoney[i][j];
+			}
+			displayEarnestMoney[i].push(displayValue);
+		}
+
+	}
+
+// construction
+
+	var construction = documentProperties.getProperty('construction');
+
+	if (construction) {
+		construction = JSON.parse(construction);
+	} else {
+		construction = {};
+		construction.condominiums = ['','','',''];
+		documentProperties.setProperty('construction',JSON.stringify(construction));
+	}
+
+	var condominiums = construction.condominiums;
+
+	// condominiums
+	var displayCondominiums = [];
+	if (condominiums.length) {
+		displayCondominiums = [];
+		for (var i = 0; i < condominiums.length; i++) {
+			if (i == 0) {
+				displayValue = formatNumber(condominiums[i]);
+			} else if (i == 1 || i == 2) {
+				if (condominiums[i]) {
+					displayValue = condominiums[i] * 100 + '%';
+				} else {
+					displayValue = '';
+				}
+			} else {
+				displayValue = condominiums[i];
+			}
+			displayCondominiums.push(displayValue);
+		}
+	} else {
+		for (var j = 0; j < 4; j++) {
+			displayCondominiums.push('');
+		}
+	}
+
+// loans
+
+	var loans = documentProperties.getProperty('loans');
+
+	if (loans) {
+		loans = JSON.parse(loans);
+	} else {
+		loans = {};
+		loans.acquisition = ['','','',''];
+		loans.construction = ['',''];
+		loans.loanFees = [
+			['','','',''],
+			['','','',''],
+			['','','',''],
+			['','','',''],
+			['','','','']
+		];
+		documentProperties.setProperty('loans',JSON.stringify(loans));
+	}
+
+	var acquisition = loans.acquisition;
+	var construction = loans.construction;
+	var loanFees = loans.loanFees;
+	var displayValue = '';
+
+	// acquisition
+	var displayAcquisition = [];
+	if (acquisition.length) {
+		displayAcquisition = [];
+		for (var i = 0; i < acquisition.length; i++) {
+			if (i == 0 || i == 2) {
+				displayValue = formatNumber(acquisition[i]);
+			}
+			if (i == 1) {
+				if (acquisition[i]) {
+					displayValue = acquisition[i] * 100 + '%';
+				} else {
+					displayValue = '';
+				}
+			}
+			displayAcquisition.push(displayValue);
+		}
+	} else {
+		for (var j = 0; j < 3; j++) {
+			displayAcquisition.push('');
+		}
+	}
+
+	// construction
+	var displayConstruction = [];
+	if (construction.length) {
+		displayConstruction = [];
+		for (var i = 0; i < construction.length; i++) {
+
+			if (i == 0) {
+				displayValue = formatNumber(construction[i]);
+			} else {
+				if (construction[i]) {
+					displayValue = construction[i] * 100 + '%';
+				} else {
+					displayValue = '';
+				}
+			}
+			displayConstruction.push(displayValue);
+		}
+	} else {
+		for (var j = 0; j < 2; j++) {
+			displayConstruction.push('');
+		}
+	}
+
+	//console.log("loanFees = " + JSON.stringify(loanFees));
+
+	// loanFees
+	var displayLoanFees = [];
+	for (var i = 0; i < 4; i++) {
+		displayLoanFees[i] = [];
+		for (var j = 0; j < 5; j++) {
+			var displayValue = '';
+			if (j == 0) {
+				if (loanFees[i][0]) {
+					displayValue = loanFees[i][0] * 100 + '%';
+				} else {
+					displayValue = '';
+				}
+			} else if (j == 1) {
+				if (loanFees[i][0]) {
+					displayValue = formatNumber(loanFees[i][0]);
+				} else {
+					displayValue = '';
+				}
+			} else {
+				if (loanFees[i][j]) {
+					displayValue = loanFees[i][j];
+				} else {
+					displayValue = '';
+				}
+			}
+			displayLoanFees[i].push(displayValue);
+		}
+	}
 
 
 function formatNumber(number) {
-    if (!number)return '';
+    if (!number) return '';
     temp = Number(number);
     if (number < 1 && number > -1) return ''; // test for fractional numbers
     var formatted_value = temp.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
@@ -91,7 +303,6 @@ function formatNumber(number) {
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
@@ -111,7 +322,7 @@ function formatNumber(number) {
   		<ul class="tabs">
   			<li class="tab col s2"><a class='active' href="#revenue">Revenue</a></li>
   			<li class="tab col s2"><a href="#construction">Construction</a></li>
-  			<li class="tab col s2"><a href="#expense">Expense</a></li>
+  			<li class="tab col s2"><a href="#expense">Expenses</a></li>
   			<li class="tab col s2"><a href="#loans">Loans</a></li>
   		</ul>
   	</div>
@@ -120,48 +331,53 @@ function formatNumber(number) {
 
     	<h5 style="margin-top:40px">Sales</h5>
 
-        <section class='form-group'>
+        <section id="revenueSales" class='form-group'>
             <ul class="form-fields">
+
+            	<?
+            	var html = `
 
                 <li>
                     <label>Total Condo Sales</label>
                     <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">180,000,000</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="revenue-edit browser-default scrollable" value="180000000">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">${displaySales[0]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="revenue-edit  sales-revenue browser-default scrollable" value="${sales[0]}">
 	                </div>
                 </li>
 
                 <li>
                     <label>Condo Pre-Sales</label>
                     <div style="flex:0 0 200px;display:block">
-                    	<span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">75,000,000</span>
-                    	<input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="revenue-edit browser-default scrollable" value="75000000">
+                    	<span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">${displaySales[1]}</span>
+                    	<input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="sales-revenue revenue-edit browser-default scrollable" value="${sales[1]}">
                     </div>
                 </li>
 
                 <li>
                     <label>Condo Sales/Month</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">2,000,000</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="revenue-edit browser-default scrollable" value="2000000">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">${displaySales[2]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="sales-revenue revenue-edit browser-default scrollable" value="${sales[2]}">
 	                </div>
                 </li>
 
                 <li>
                     <label>Listing Commission</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">3%</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="revenue-edit browser-default scrollable" value="3%">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">${displaySales[3]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" data-percent=1 class="sales-revenue revenue-edit browser-default scrollable" value="${sales[3]}">
 	                </div>
                 </li>
 
                 <li>
                     <label>Selling Commission</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px'  class="revenue-display scrollable left">3%</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="revenue-edit browser-default scrollable" value="3%">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="revenue-display scrollable left">${displaySales[4]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" data-percent=1 class="sales-revenue revenue-edit browser-default scrollable" value="${sales[4]}">
 	                </div>
-	            </li>
+	            </li>`;?>
+
+	            <?!= html; ?>
 
             </ul>
         </section>
@@ -174,39 +390,71 @@ function formatNumber(number) {
             <h5 style="flex:0 0 110px;text-align:center">Start/Finish</h5>
         </div>
 
-        <section class="form-group">
+        <section id="revenueEarnestMoney" class="form-group">
 
             <ul class="form-fields">
+            	<?
 
-                <li>
-                    <label style="flex:0 0 200px">First EM Deposit</label>
+            	var label = ['First EM Deposit','Second EM Deposit', 'Third EM Deposit'];
+            	for (var i = 0; i < 3; i++) {
 
-                    <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block"  class="revenue-display scrollable">10%</span>
-	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="10%">
-	                </div>
+ 					var html = `
 
-                    <div style="flex:0 0 90px;display:block">
-                    	<span style="display: block"  class="revenue-display scrollable">Dec 2021</span>
-                    	<input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="Dec 2021">
-                    </div>
+	                <li>
+	                    <label style="flex:0 0 200px">${label[i]}</label>
 
-	                <div style="flex:0 0 110px;display:block">
-	                    <span style="display: block"  class="revenue-display scrollable"></span>
-	                    <input style="display:none" type="text" class="revenue-edit browser-default scrollable" value="">
-	                </div>
+	                    <div style="flex:0 0 90px;display:block">
+		                    <span style="display: block"  class="revenue-display scrollable">${displayEarnestMoney[i][0]}</span>
+		                    <input style="display:none" type="number" class="earnest-money-revenue revenue-edit browser-default scrollable" data-percent=1 value="${earnestMoney[i][0]}">
+		                </div>
 
-	                <div style="flex:0 0 110px;display:block">
-                    	<span style="display: block"  class="revenue-display scrollable">Start</span>
-	                    <select class="browser-default revenue-edit" style="display:none">
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-	                </div>
-                </li>
+	                    <div style="flex:0 0 90px;display:block">
+	                    	<span style="display: block"  class="revenue-display scrollable">${displayEarnestMoney[i][1]}</span>
+	                    	<input style="display:none" type="text" class="earnest-money-revenue revenue-edit browser-default scrollable" value="${earnestMoney[i][1]}">
+	                    </div>
 
-                <li>
+		                <div style="flex:0 0 110px;display:block">
+		                    <span style="display: block"  class="revenue-display scrollable">${displayEarnestMoney[i][2]}</span>
+		                    <input style="display:none" type="text" class="earnest-money-revenue revenue-edit browser-default scrollable" value="${earnestMoney[i][2]}">
+		                </div>
+
+		                <div style="flex:0 0 110px;display:block">
+	                    	<span style="display: block"  class="revenue-display scrollable">${displayEarnestMoney[i][3]}</span>
+		                    <select class="earnest-money-revenue browser-default revenue-edit" style="display:none">`;?>
+
+		                    <?!= html; ?><?
+
+			                html = '';
+
+			                if (!earnestMoney[i][3]) {
+			                    html += '<option value="">choose</option>';
+			                    html += '<option value="finish">finish</option>';
+			                    html += '<option value="start">start</option>';
+				            } else if (earnestMoney[i][3] == 'finish') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="finish" selected>finish</option>';
+			                    html += '<option value="start">start</option>';
+				            } else if (earnestMoney[i][3] == 'start') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="finish">finish</option>';
+			                    html += '<option value="start" selected>start</option>';
+				            } ?>
+
+				            <?!= html;?><?
+				            html = `
+
+		                    </select>
+		                </div>
+	                </li>
+
+	                `; ?>
+
+					<?!= html; ?><?
+
+            	} ?>
+
+
+				<!-- <li>
                     <label style="flex:0 0 200px">Second EM Deposit</label>
 
                     <div style="flex:0 0 90px;display:block">
@@ -260,7 +508,7 @@ function formatNumber(number) {
 	                    	<option value="start">Start</option>
 	                    </select>
 	                </div>
-                </li>
+                </li> -->
 
             </ul>
         </section>
@@ -280,42 +528,47 @@ function formatNumber(number) {
 
     	<h5 style="margin-top:40px">Condominiums</h5>
 
-        <section class='form-group'>
+        <section id="constructionCondominiums" class='form-group'>
 
             <ul class="form-fields">
 
+            	<?
+            	var html = `
+
                 <li>
-                    <label style="flex:0 0 200px">Consruction Cost</label>
+                    <label style="flex:0 0 200px">Construction Cost</label>
 
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="construction-display scrollable left">100,000,000</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default scrollable" value="100000000">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="construction-display scrollable left">${displayCondominiums[0]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="condominiums-construction construction-edit browser-default scrollable" value="${condominiums[0]}">
 	                </div>
                 </li>
 
                 <li>
                     <label style="flex:0 0 200px;display:block">Contingency</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="construction-display scrollable left">3%</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default" class="scrollable" value="3%">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="construction-display scrollable left">${displayCondominiums[1]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default condominiums-construction scrollable" data-percent=1 value="${condominiums[1]}">
 	                </div>
                 </li>
 
                 <li>
                     <label style="flex:0 0 200px;display:block">Construction Mgmt</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px'class="construction-display scrollable left">2.5%</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default" class="scrollable" value="2.5%">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px'class="construction-display scrollable left">${displayCondominiums[2]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="construction-edit browser-default condominiums-construction scrollable" data-percent=1 value="${condominiums[2]}">
 	                </div>
                 </li>
 
                 <li>
                     <label style="flex:0 0 200px;display:block">Schedule Tab Name</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="construction-display scrollable left">Schedule</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default" class="scrollable" value="Schedule">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="construction-display scrollable left">${displayCondominiums[3]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="construction-edit browser-default condominiums-construction scrollable" value="${condominiums[3]}">
 	                </div>
-                </li>
+                </li>`;?>
+
+                <?!= html; ?>
 
             </ul>
         </section>
@@ -334,181 +587,140 @@ function formatNumber(number) {
     <div id="loans" style="width:800px" class="col s12">
 
     	<h5 style="margin-top:40px">Acquisition Loan</h5>
-        <section style="width:600px" class='form-group'>
+        <section id="loansAcquisition" style="width:600px" class='form-group'>
             <ul class="form-fields">
 
+            	<?
+            	var html = `
                 <li>
                     <label style="flex:0 0 200px">Current Balance</label>
+
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">2,400,000</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="loan-edit browser-default scrollable" value="2400000">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">${displayAcquisition[0]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="loan-edit browser-default scrollable acquisition-loans" value="${acquisition[0]}">
 	                </div>
                 </li>
 
                 <li>
                     <label style="flex:0 0 200px">Interest Rate</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">12%</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="loan-edit browser-default scrollable" value="12%">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">${displayAcquisition[1]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="loan-edit browser-default scrollable acquisition-loans" data-percent=1 value="${acquisition[1]}">
 	                </div>
                 </li>
 
                 <li>
                     <label style="flex:0 0 200px">Interest Paid to Date</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">633,000</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="loan-edit browser-default scrollable" value="633000">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">${displayAcquisition[2]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="loan-edit browser-default scrollable acquisition-loans" value="${acquisition[2]}">
 	                </div>
-                </li>
+                </li>`; ?>
+
+                <?!= html; ?>
 
             </ul>
         </section>
 
         <h5 style="margin-top:40px">Construction Loan</h5>
-        <section style="width:600px" class="form-group">
+        <section id="loansConstruction" style="width:600px" class="form-group">
             <ul class="form-fields">
+
+            	<?
+            	var html = `
 
                 <li>
                     <label style="flex:0 0 200px">Estimated Loan Amount</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">80,000,000</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="loan-edit browser-default scrollable" value="80000000">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">${displayConstruction[0]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="number" class="loan-edit browser-default scrollable construction-loans" value="${construction[0]}">
 	                </div>
                 </li>
 
                 <li>
                     <label style="flex:0 0 200px">Interest Rate</label>
 	                <div style="flex:0 0 200px;display:block">
-	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">12%</span>
-	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="loan-edit browser-default scrollable" value="12%">
+	                    <span style='display:inline-block;overflow:scroll;width:100%;text-align:left;padding-left:10px' class="loan-display scrollable left">${displayConstruction[1]}</span>
+	                    <input style='overflow:scroll;display:none;width:200px;padding-left:8px;text-align:left' type="text" class="loan-edit browser-default scrollable construction-loans" data-percent=1 value="${construction[1]}">
 	                </div>
-                </li>
+                </li>`;?>
+
+                <?!= html; ?>
 
             </ul>
         </section>
 
         <div style="display:flex;flex-wrap:wrap">
-            <h5 style="flex:0 0 200px">Construction Loan Fees</h5>
+            <h5 style="flex:0 0 200px">Loan Fees</h5>
             <h5 style="flex:0 0 90px;text-align:center">%</h5>
+            <h5 style="flex:0 0 110px;text-align:center">Lump Sum</h5>
             <h5 style="flex:0 0 90px;text-align:center">Date</h5>
             <h5 style="flex:0 0 110px;text-align:center">Milestone</h5>
             <h5 style="flex:0 0 110px;text-align:center">Start/Finish</h5>
         </div>
 
-        <section class="form-group">
+        <section id="loansFees" class="form-group">
             <ul class="form-fields">
 
-                <li>
-                    <label style="flex:0 0 200px" class="label">Broker Fee</label>
+            	<?
+            	var label = ['Broker Fee','Origination Fee', 'Closeout Fee', 'Legal'];
+            	for (var i = 0; i < 4; i++) {
+	            	html = `
+	                <li>
+	                    <label style="flex:0 0 200px" class="label">${label[i]}</label>
 
-                    <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block"  class="loan-display scrollable">1%</span>
-	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="10%">
-	                </div>
+	                    <div style="flex:0 0 90px;display:block">
+		                    <span style="display: block" class="loan-display scrollable">${displayLoanFees[i][0]}</span>
+		                    <input style="display:none" type="text" class="loan-edit browser-default scrollable fees-loans" data-percent=1 value="${loanFees[i][0]}">
+		                </div>
 
-	                <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block"  class="loan-display scrollable"></span>
-	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="Dec 2021">
-	                </div>
+		                <div style="flex:0 0 110px;display:block">
+		                    <span style="display: block" class="loan-display scrollable">${displayLoanFees[i][1]}</span>
+		                    <input style="display:none" type="number" class="loan-edit browser-default scrollable fees-loans" value="${loanFees[i][1]}">
+		                </div>
 
-	                <div style="flex:0 0 110px;display:block">
-	                    <span style="display: block"  class="loan-display scrollable">Shoring</span>
-	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="">
-	                </div>
+		                <div style="flex:0 0 90px;display:block">
+		                    <span style="display: block" class="loan-display scrollable">${displayLoanFees[i][2]}</span>
+		                    <input style="display:none" type="text" class="loan-edit browser-default scrollable fees-loans" value="${loanFees[i][2]}">
+		                </div>
 
-	                <div style="flex:0 0 110px;display:block">
-                    	<span style="display: block" class="loan-display scrollable">Start</span>
-	                    <select class="browser-default loan-edit" style="display:none" >
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-	                </div>
-                </li>
+		                <div style="flex:0 0 110px;display:block">
+		                    <span style="display: block" class="loan-display scrollable">${displayLoanFees[i][3]}</span>
+		                    <input style="display:none" type="text" class="loan-edit browser-default scrollable fees-loans" value="${loanFees[i][3]}">
+		                </div>
 
-                <li>
-                    <label style="flex:0 0 200px" class="label">Origination Fee</label>
+		                <div style="flex:0 0 110px;display:block">
+	                    	<span style="display: block" class="loan-display scrollable">${displayLoanFees[i][4]}</span>
+		                    <select class="browser-default loan-edit fees-loans" style="display:none">`;?>
 
-                    <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block" class="loan-display scrollable">2%</span>
-	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="10%">
-	                </div>
+		                    <?!= html; ?><?
 
-	                <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block" class="loan-display scrollable"></span>
-	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="">
-	                </div>
+			                html = '';
 
-	                <div style="flex:0 0 110px;display:block">
-	                    <span style="display: block" class="loan-display scrollable">Shoring</span>
-	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="Shoring">
-	                </div>
+			                if (!loanFees[i][4]) {
+			                    html += '<option value="">choose</option>';
+			                    html += '<option value="finish">finish</option>';
+			                    html += '<option value="start">start</option>';
+				            } else if (loanFees[i][4] == 'finish') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="finish" selected>finish</option>';
+			                    html += '<option value="start">start</option>';
+				            } else if (loanFees[i][4] == 'start') {
+				            	html += '<option value="">choose</option>';
+			                    html += '<option value="finish">finish</option>';
+			                    html += '<option value="start" selected>start</option>';
+				            } ?>
 
-	                <div style="flex:0 0 110px;display:block">
-                    	<span style="display: block" class="loan-display scrollable">Start</span>
-	                    <select class="browser-default loan-edit" style="display:none" >
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-	                </div>
-                </li>
+				            <?!= html;?><?
+				            html = `
 
-                <li>
-                    <label style="flex:0 0 200px" class="label">Closeout Fee</label>
+		                    </select>
+		                </div>
+	                </li>`;?>
 
-                    <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block" class="loan-display scrollable">4%</span>
-	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="10%">
-	                </div>
+                <?!= html; ?><?
+            } ?>
 
-	                <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block" class="loan-display scrollable"></span>
-	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="">
-	                </div>
-
-	                <div style="flex:0 0 110px;display:block">
-	                    <span style="display: block" class="loan-display scrollable">Completion</span>
-	                    <input style="display:none"  type="text" class="loan-edit browser-default scrollable" value="Shoring">
-	                </div>
-
-	                <div style="flex:0 0 110px;display:block">
-                    	<span style="display: block" class="loan-display scrollable">Finish</span>
-	                    <select class="browser-default loan-edit" style="display:none" >
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-	                </div>
-                </li>
-
-                <li>
-                    <label style="flex:0 0 200px" class="label">Legal</label>
-
-                    <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block"  class="loan-display scrollable">25,000</span>
-	                    <input style="display:none" type="text" class="loan-edit browser-default scrollable" value="10%">
-	                </div>
-
-	                <div style="flex:0 0 90px;display:block">
-	                    <span style="display: block"  class="loan-display scrollable">Dec 2021</span>
-	                    <input style="display:none" type="text" class="loan-edit browser-default scrollable" value="">
-	                </div>
-
-	                <div style="flex:0 0 110px;display:block">
-	                    <span style="display: block"  class="loan-display scrollable"></span>
-	                    <input style="display:none" type="text" class="loan-edit browser-default scrollable" value="Shoring">
-	                </div>
-
-	                <div style="flex:0 0 110px;display:block">
-                    	<span style="display: block"  class="loan-display scrollable"></span>
-	                    <select class="browser-default loan-edit" style="display:none">
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-	                </div>
-                </li>
             </ul>
         </section>
 
@@ -640,58 +852,6 @@ function formatNumber(number) {
 
             	} ?>
 
-
-	            <!--<li>
-
-                	<div style="flex:0 0 200px;display:block">
-                    	<span style="display: block" class="expense-display label" name="description">Land Acquisition</span>
-                    	<input style="display:none;text-align: right;min-width:200px" type="text" name="description" class="expense-edit land-expense browser-default scrollable label" value="Land Acquisition">
-                    </div>
-
-                    <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style="display:block" class="expense-display scrollable" name="paid">2,400,000</span>
-	                    <input style='display:none' type="text" class="expense-edit land-expense browser-default scrollable" name="paid" value="2400000">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style='display:block;text-align:center' class="expense-display scrollable" name="future"></span>
-	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="future" value="">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type"></span>
-	                    <select style="display: none" class="browser-default expense-edit land-expense" name="type">
-	                    	<option value="">choose</option>
-	                    	<option value="lumpSum">lump sum</option>
-	                    	<option value="monthly">monthly</option>
-	                    </select>
-		            </div>
-
-		            <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start"></span>
-	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="start" value="">
-	                </div>
-
-	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone"></span>
-	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="milestone" value="">
-	                </div>
-
-	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish"></span>
-	                    <select style="display: none" class="browser-default expense-edit land-expense" name="startFinish">
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-		            </div>
-
-		            <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration"></span>
-		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="duration" value="">
-		            </div>
-                </li> -->
-
             </ul>
         </section>
 
@@ -797,59 +957,6 @@ function formatNumber(number) {
 					<?!= html; ?><?
 
             	} ?>
-
-
-                <!-- <li>
-                	<div style="flex:0 0 200px;display:block">
-	                    <span style="display: block" class="expense-display label" name="description">Lift Tower</span>
-	                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit hard-cost-expense browser-default scrollable label" name="description" value="Lift Tower">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style="display:block" class="expense-display scrollable" name="paid">100,000</span>
-	                    <input style='display:none' type="number" class="expense-edit hard-cost-expense browser-default scrollable" name="paid" value="800000">
-	                </div>
-
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style="display:block" class="expense-display scrollable" name="future"></span>
-	                     <input style='display:none' type="number" class="expense-edit hard-cost-expense browser-default scrollable" name="future" value="400000">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">lump sum</span>
-	                    <select style="display: none" class="browser-default hard-cost-expense expense-edit" name="type">
-	                    	<option>lump sum</option>
-	                    	<option>monthly</option>
-	                    </select>
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start"></span>
-	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="start" value="Apr 2022">
-	                </div>
-
-	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone"></span>
-	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="milestone" value="">
-	                </div>
-
-	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish"></span>
-	                    <select style="display: none" class="browser-default hard-cost-expense expense-edit land-expense" name="startFinish">
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-	                </div>
-
-	                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration"></span>
-		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit hard-cost-expense browser-default scrollable" name="duration" value="2">
-		            </div>
-                </li> -->
-
-
 
             </ul>
         </section>
@@ -959,57 +1066,6 @@ function formatNumber(number) {
 					<?!= html; ?><?
 
             	} ?>
-
-                <!-- <li>
-                	<div style="flex:0 0 200px;display:block">
-	                    <span style="display: block" class="expense-display label" name="description">Recurring Marketing</span>
-	                    <input style="display:none;text-align: right;min-width:200px" type="text" class="expense-edit soft-cost-expense browser-default scrollable label" name="description" value="Recurring Marketing">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style="display:block" class="expense-display scrollable" name="paid">500,000</span>
-	                    <input style='display:none' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="paid" value="800000">
-	                </div>
-
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style="display:block" class="expense-display scrollable" name="future"></span>
-	                     <input style='display:none' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="future" value="3000">
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">monthly</span>
-	                    <select style="display: none" class="browser-default soft-cost-expense expense-edit" name="type">
-	                    	<option value=''>choose</option>
-	                    	<option value=lumpSum>lump sum</option>
-	                    	<option value="monthly">monthly</option>
-	                    </select>
-	                </div>
-
-	                <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start"></span>
-	                    <input style='overflow:scroll; display:none;text-align:center;flex:1 0 90px' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="start" value="Apr 2022">
-	                </div>
-
-	                <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone"></span>
-	                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="milestone" value="">
-	                </div>
-
-	                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish"></span>
-	                    <select style="display: none" class="browser-default soft-cost-expense expense-edit land-expense" name="startFinish">
-	                    	<option value="">choose</option>
-	                    	<option value="finish">Finish</option>
-	                    	<option value="start">Start</option>
-	                    </select>
-	                </div>
-
-	                <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
-	                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration"></span>
-		                <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit soft-cost-expense browser-default scrollable" name="duration" value="">
-		            </div>
-                </li> -->
 
             </ul>
         </section>
@@ -1160,7 +1216,6 @@ function formatNumber(number) {
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-
 
 <?!=include('SB.assumptions.js');?>
 

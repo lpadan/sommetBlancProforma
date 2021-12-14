@@ -78,7 +78,6 @@
     });
 
     $('#expenseCategory').change(function() {
-
     });
 
     $('#editExpenseSaveBtn').click(function(e) {
@@ -136,13 +135,217 @@
         });
 
         google.script.run.withUserObject(this).withSuccessHandler(successSaveExpenses).saveExpenses(expenses);
-
     });
+
+    $('#editRevenueSaveBtn').click(function(e) {
+        e.preventDefault();
+        $(this).text('saving...');
+        var revenue={},temp=[],val='',displayVal='',type='';
+
+        //get sales values
+        revenue.sales = [];
+        $('#revenueSales li').each(function() {
+            temp = [];
+            $(this).find('.sales-revenue').each(function() {
+                type = $(this).attr('type');
+                val = $(this).val();
+                if (!val) val = '';
+                var percent = $(this).data('percent');
+                if (percent) {
+                    if (val) {
+                        displayVal = val * 100 + "%";
+                    } else {
+                        displayVal = '';
+                    }
+                } else if (type == 'number') {
+                    displayVal = formatNumber(val);
+                } else {
+                    displayVal = val;
+                }
+                $(this).prev().text(displayVal)
+                if (!val) val = '';
+                temp.push(val);
+            });
+            revenue.sales.push(temp);
+        });
+
+        //get earnest money values
+        revenue.earnestMoney = [];
+        $('#revenueEarnestMoney li').each(function() {
+            temp = [];
+
+            $(this).find('.earnest-money-revenue').each(function() {
+
+                type = $(this).attr('type');
+                val = $(this).val();
+                if (!val) val = '';
+                var percent = $(this).data('percent');
+                if (percent) {
+                    if (val) {
+                        displayVal = val * 100 + "%";
+                    } else {
+                        displayVal = '';
+                    }
+                } else if (type == 'number') {
+                    displayVal = formatNumber(val);
+                } else {
+                    displayVal = val;
+                }
+                $(this).prev().text(displayVal)
+                if (!val) val = '';
+                temp.push(val);
+
+            });
+            revenue.earnestMoney.push(temp);
+        });
+        google.script.run.withUserObject(this).withSuccessHandler(successSaveRevenue).saveRevenue(revenue);
+    });
+
+    $('#editLoanSaveBtn').click(function(e) {
+        e.preventDefault();
+        $(this).text('saving...');
+        var loans={},temp=[],val='',displayVal='',type='';
+
+        // acquisition
+        loans.acquisition = [];
+        $('#loansAcquisition li').each(function() {
+            temp = [];
+            $(this).find('.acquisition-loans').each(function() {
+                type = $(this).attr('type');
+                val = $(this).val();
+                if (!val) val = '';
+                var percent = $(this).data('percent');
+                if (percent) {
+                    if (val) {
+                        displayVal = val * 100 + "%";
+                    } else {
+                        displayVal = '';
+                    }
+                } else if (type == 'number') {
+                    displayVal = formatNumber(val);
+                } else {
+                    displayVal = val;
+                }
+                $(this).prev().text(displayVal)
+                if (!val) val = '';
+                temp.push(val);
+            });
+            loans.acquisition.push(temp);
+        });
+
+        // construction
+        loans.construction = [];
+        $('#loansConstruction li').each(function() {
+            temp = [];
+
+            $(this).find('.construction-loans').each(function() {
+
+                type = $(this).attr('type');
+                val = $(this).val();
+                if (!val) val = '';
+                var percent = $(this).data('percent');
+                if (percent) {
+                    if (val) {
+                        displayVal = val * 100 + "%";
+                    } else {
+                        displayVal = '';
+                    }
+                } else if (type == 'number') {
+                    displayVal = formatNumber(val);
+                } else {
+                    displayVal = val;
+                }
+                $(this).prev().text(displayVal)
+                if (!val) val = '';
+                temp.push(val);
+
+            });
+            loans.construction.push(temp);
+        });
+
+        // construction
+        loans.loanFees = [];
+        $('#loansFees li').each(function() {
+            temp = [];
+            $(this).find('.fees-loans').each(function() {
+                type = $(this).attr('type');
+                val = $(this).val();
+                if (!val) val = '';
+                var percent = $(this).data('percent');
+                if (percent) {
+                    if (val) {
+                        displayVal = val * 100 + "%";
+                    } else {
+                        displayVal = '';
+                    }
+                } else if (type == 'number') {
+                    displayVal = formatNumber(val);
+                } else {
+                    displayVal = val;
+                }
+                $(this).prev().text(displayVal)
+                if (!val) val = '';
+                temp.push(val);
+            });
+            loans.loanFees.push(temp);
+        });
+        google.script.run.withUserObject(this).withSuccessHandler(successSaveLoans).saveLoans(loans);
+    });
+
+    $('#editConstructionSaveBtn').click(function(e){
+        e.preventDefault();
+        $(this).text('saving...');
+        var construction={},temp=[],val='',displayVal='',type='';
+
+        //get condominium values
+        construction.condominiums = [];
+        $('#constructionCondominiums li').each(function() {
+            temp = [];
+            $(this).find('.condominiums-construction').each(function() {
+                type = $(this).attr('type');
+                val = $(this).val();
+                if (!val) val = '';
+                var percent = $(this).data('percent');
+                if (percent) {
+                    if (val) {
+                        displayVal = val * 100 + "%";
+                    } else {
+                        displayVal = '';
+                    }
+                } else if (type == 'number') {
+                    displayVal = formatNumber(val);
+                } else {
+                    displayVal = val;
+                }
+                $(this).prev().text(displayVal)
+                if (!val) val = '';
+                temp.push(val);
+            });
+            construction.condominiums.push(temp);
+        });
+        google.script.run.withUserObject(this).withSuccessHandler(successSaveConstruction).saveConstruction(construction);
+    });
+
+    function successSaveLoans(data,button) {
+        $(button).text("Save");
+        $('#editLoanCancelBtn').click();
+    }
 
     function successSaveExpenses(data,button) {
         $(button).text("Save");
         $('#editExpenseCancelBtn').click();
     }
+
+    function successSaveRevenue(data,button) {
+        $(button).text("Save");
+        $('#editRevenueCancelBtn').click();
+    }
+
+    function successSaveConstruction(data,button) {
+        $(button).text("Save");
+        $('#editConstructionCancelBtn').click();
+    }
+
 
     function formatNumber(number) {
         if (!number)return '';
