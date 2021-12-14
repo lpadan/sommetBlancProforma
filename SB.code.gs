@@ -10,3 +10,8 @@ function include(filename) {
 
    return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
+
+function saveExpenses(expenses) {
+   var documentProperties = PropertiesService.getDocumentProperties();
+   documentProperties.setProperty('expenses', JSON.stringify(expenses));
+}

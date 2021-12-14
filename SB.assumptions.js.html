@@ -82,39 +82,75 @@
     });
 
     $('#editExpenseSaveBtn').click(function(e) {
+
         e.preventDefault();
+        $(this).text('saving...');
+        var expenses={},temp=[],val='',displayVal='',type='';
+        expenses.land = [];
+        expenses.hardCosts = [];
+        expenses.softCosts = [];
+
         // get land values
         $('#land li').each(function() {
+            temp = [];
             $(this).find('.land-expense').each(function() {
-                $(this).prev().text($(this).val());
-
-                // build object
-
-                // save to document properties
+                type = $(this).attr('type');
+                val = $(this).val();
+                if (type == 'number') displayVal = formatNumber(val);
+                else displayVal = val;
+                $(this).prev().text(displayVal)
+                if (!val) val = '';
+                temp.push(val);
             });
+            expenses.land.push(temp);
         });
 
         // get hard cost values
         $('#hardCosts li').each(function() {
+            temp = [];
             $(this).find('.hard-cost-expense' ).each(function() {
-                $(this).prev().text($(this).val());
-
-                // build object
-
+                type = $(this).attr('type');
+                val = $(this).val();
+                if (type == 'number') displayVal = formatNumber(val);
+                else displayVal = val;
+                $(this).prev().text(displayVal)
+                if (!val) val = '';
+                temp.push(val);
             });
+            expenses.hardCosts.push(temp);
         });
 
         // get soft cost values
         $('#softCosts li').each(function() {
+            temp = [];
             $(this).find('.soft-cost-expense' ).each(function() {
-                $(this).prev().text($(this).val());
-
-                // build object
-
+                type = $(this).attr('type');
+                val = $(this).val();
+                if (type == 'number') displayVal = formatNumber(val);
+                else displayVal = val;
+                $(this).prev().text(displayVal)
+                if (!val) val = '';
+                temp.push(val);
             });
+            expenses.softCosts.push(temp);
         });
 
+        google.script.run.withUserObject(this).withSuccessHandler(successSaveExpenses).saveExpenses(expenses);
+
     });
+
+    function successSaveExpenses(data,button) {
+        $(button).text("Save");
+        $('#editExpenseCancelBtn').click();
+    }
+
+    function formatNumber(number) {
+        if (!number)return '';
+        temp = Number(number);
+        if (number < 1 && number > -1) return ''; // test for fractional numbers
+        var formatted_value = temp.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+        return formatted_value;
+    }
 
 
 
