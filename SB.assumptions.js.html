@@ -69,6 +69,7 @@
     });
 
     $('#addExpenseBtn').click(function() {
+
         addExpenseModal.open();
     });
 
@@ -472,6 +473,11 @@
     function successAddExpense(data,formData) {
         // returns the expense array e.g. land, hardCosts, softCosts with new row added and sorted a-z
         var category = formData.category;
+        if (category == 'softCosts') var categoryClass = 'soft-cost-expense';
+        if (category == 'land') var categoryClass = 'land-expense';
+        if (category == 'hardCosts') var categoryClass = 'hard-cost-expense';
+
+
         $('#' + category).empty();
 
         // convert data values to display values
@@ -504,22 +510,22 @@
             <li>
                 <div style="flex:0 0 200px;display:block">
                     <span style="display: block" class="expense-display label" name="description">${data[i][0]}</span>
-                    <input style="display:none;text-align: right;min-width:200px" type="text" name="description" class="expense-edit land-expense browser-default scrollable label" value="${data[i][0]}">
+                    <input style="display:none;text-align: right;min-width:200px" type="text" name="description" class="expense-edit ${categoryClass} browser-default scrollable label" value="${data[i][0]}">
                 </div>
 
                 <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
                     <span style="display:block" class="expense-display scrollable" name="paid">${displayData[i][1]}</span>
-                    <input style='display:none' type="number" class="expense-edit land-expense browser-default scrollable" name="paid" value="${data[i][1]}">
+                    <input style='display:none' type="number" class="expense-edit ${categoryClass} browser-default scrollable" name="paid" value="${data[i][1]}">
                 </div>
 
                 <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
                     <span style='display:block;text-align:center' class="expense-display scrollable" name="future">${displayData[i][2]}</span>
-                    <input style='overflow:scroll; display:none;text-align:center' type="number" class="expense-edit land-expense browser-default scrollable" name="future" value="${data[i][2]}">
+                    <input style='overflow:scroll; display:none;text-align:center' type="number" class="expense-edit ${categoryClass} browser-default scrollable" name="future" value="${data[i][2]}">
                 </div>
 
                 <div style='overflow:scroll; display:block;flex:0 0 110px;text-align:center'>
                     <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="type">${data[i][3]}</span>
-                        <select style="display: none" class="browser-default expense-edit land-expense" name="type">`;
+                        <select style="display: none" class="browser-default expense-edit ${categoryClass}" name="type">`;
 
                         if (!data[i][3]) {
                             html += `<option value="">choose</option>
@@ -541,17 +547,17 @@
 
                 <div style='overflow:scroll; display:block;flex:0 0 90px;text-align:center'>
                     <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="start">${data[i][4]}</span>
-                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="start" value="${data[i][4]}">
+                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit ${categoryClass} browser-default scrollable" name="start" value="${data[i][4]}">
                 </div>
 
                 <div style='overflow:scroll; display:inline-block;flex:0 0 110px;text-align:center'>
                     <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="milestone">${data[i][5]}</span>
-                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="milestone" value="${data[i][5]}">
+                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit ${categoryClass} browser-default scrollable" name="milestone" value="${data[i][5]}">
                 </div>
 
                 <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
                     <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${data[i][6]}</span>
-                    <select style="display: none" class="browser-default expense-edit land-expense" name="startFinish">`;
+                    <select style="display: none" class="browser-default expense-edit ${categoryClass}" name="startFinish">`;
 
                     if (!data[i][6]) {
                         html += `<option value="">choose</option>
@@ -573,7 +579,7 @@
 
                 <div style='overflow:scroll; display:inline-block;flex:0 0 90px;text-align:center'>
                     <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="duration">${data[i][7]}</span>
-                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit land-expense browser-default scrollable" name="duration" value="${data[i][7]}">
+                    <input style='overflow:scroll; display:none;text-align:center' type="text" class="expense-edit ${categoryClass} browser-default scrollable" name="duration" value="${data[i][7]}">
                 </div>
             </li>`;
         }

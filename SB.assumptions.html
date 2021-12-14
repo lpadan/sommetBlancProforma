@@ -964,7 +964,7 @@ function formatNumber(number) {
 
 		                <div style='overflow:scroll;display: block;flex:0 0 110px;text-align:center'>
 		                    <span style='overflow:scroll; display:block;text-align:center' class="expense-display scrollable" name="startFinish">${softCosts[i][6]}</span>
-		                    <select style="display: none" class="browser-default soft-cost-expense expense-edit land-expense" name="startFinish">`;?>
+		                    <select style="display: none" class="browser-default soft-cost-expense expense-edit" name="startFinish">`;?>
 
 		                    <?!= html; ?><?
 
@@ -1062,6 +1062,7 @@ function formatNumber(number) {
 
 			        <div class="input-field">
 						<select class="" name="type">
+							<option value="">choose</option>
 							<option value="lump sum">Lump Sum</option>
 							<option value="monthly">Monthly</option>
 						</select>
@@ -1086,6 +1087,7 @@ function formatNumber(number) {
 
 			        <div class="input-field">
 						<select class="" name="startFinish">
+							<option value="">choose</option>
 							<option value="start">Start</option>
 							<option value="finish">Finish</option>
 						</select>
