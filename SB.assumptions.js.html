@@ -94,7 +94,7 @@
                 val = $(this).val();
                 if (type == 'number') displayVal = formatNumber(val);
                 else displayVal = val;
-                $(this).prev().text(displayVal)
+                $(this).prev().text(displayVal);
                 if (!val) val = '';
                 temp.push(val);
             });
@@ -109,7 +109,7 @@
                 val = $(this).val();
                 if (type == 'number') displayVal = formatNumber(val);
                 else displayVal = val;
-                $(this).prev().text(displayVal)
+                $(this).prev().text(displayVal);
                 if (!val) val = '';
                 temp.push(val);
             });
@@ -124,7 +124,7 @@
                 val = $(this).val();
                 if (type == 'number') displayVal = formatNumber(val);
                 else displayVal = val;
-                $(this).prev().text(displayVal)
+                $(this).prev().text(displayVal);
                 if (!val) val = '';
                 temp.push(val);
             });
@@ -138,6 +138,11 @@
         e.preventDefault();
         $(this).text('saving...');
         var revenue={},temp=[],val='',displayVal='',type='';
+
+        // get run date
+        var runDate = $('#runDateInput').val();
+        revenue.runDate = runDate;
+        $('#runDateInput').prev().text(runDate);
 
         //get sales values
         revenue.sales = [];
@@ -206,7 +211,7 @@
         // acquisition
         loans.acquisition = [];
         $('#loansAcquisition li').each(function() {
-            temp = [];
+            //temp = [];
             $(this).find('.acquisition-loans').each(function() {
                 type = $(this).attr('type');
                 val = $(this).val();
@@ -225,15 +230,16 @@
                 }
                 $(this).prev().text(displayVal)
                 if (!val) val = '';
-                temp.push(val);
+                //temp.push(val);
+                loans.acquisition.push(val);
             });
-            loans.acquisition.push(temp);
+            //loans.acquisition = temp;
         });
 
         // construction
         loans.construction = [];
         $('#loansConstruction li').each(function() {
-            temp = [];
+            //temp = [];
 
             $(this).find('.construction-loans').each(function() {
 
@@ -254,13 +260,13 @@
                 }
                 $(this).prev().text(displayVal)
                 if (!val) val = '';
-                temp.push(val);
-
+                //temp.push(val);
+                loans.construction.push(val);
             });
-            loans.construction.push(temp);
+            //loans.construction = temp;
         });
 
-        // construction
+        // loan fees
         loans.loanFees = [];
         $('#loansFees li').each(function() {
             temp = [];
@@ -325,9 +331,10 @@
 
     $('#addExpenseSaveBtn').click(function(e){
         e.preventDefault();
-        $(this).text('saving...');
         var formArray = $('#addExpenseForm').serializeArray();
         var formData = objectifyForm(formArray);
+        if (!formData.description || !formData.category) return;
+        $(this).text('saving...');
         google.script.run.withUserObject(formData).withSuccessHandler(successAddExpense).addExpense(formData);
     });
 

@@ -12,6 +12,7 @@ function include(filename) {
 }
 
 function saveExpenses(expenses) {
+
    var land = expenses.land
    var hardCosts = expenses.hardCosts
    var softCosts = expenses.softCosts

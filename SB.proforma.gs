@@ -15,16 +15,16 @@ function updateProforma() {
     }
 
     // assumptions
-        var sheet = ss.getSheetByName('Assumptions');
-        if (!sheet) {
-            ui.alert('Could not find the "Assumptions" sheet');
-            return;
-        }
-        var numRows = sheet.getLastRow();
-        var assumptions = sheet.getRange(1,2,numRows,8).getValues();
+        var documentProperties = PropertiesService.getDocumentProperties();
+        var assumptions = documentProperties.getProperties();
+        var revenue = JSON.parse(assumptions.revenue);
+        var construction = JSON.parse(assumptions.construction);
+        var expenses = JSON.parse(assumptions.expenses);
+        var loans = JSON.parse(assumptions.loans);
+        var projectStartDate = revenue.runDate;
 
         // start date
-            var projectStartDate = sheet.getRange("C1").getValue();
+            //var projectStartDate = sheet.getRange("C1").getValue();
             var projectStartDate = new Date(projectStartDate);
             month = projectStartDate.getMonth();
             year = projectStartDate.getFullYear();
@@ -32,40 +32,28 @@ function updateProforma() {
             var headerDate = lookup[month] + ' ' + year;
 
         // sales
-            index = ArrayLib.indexOf(assumptions, 0, "Total Condo Sales");
-            var grossSales = assumptions[index][1];
-            index = ArrayLib.indexOf(assumptions, 0, "Condo Presales");
-            var preSales = assumptions[index][1];
-            index = ArrayLib.indexOf(assumptions, 0, "Condo Sales / Month");
-            var salesPerMonth = assumptions[index][1];
-            index = ArrayLib.indexOf(assumptions, 0, "Listing Commission");
-            var listingCommission = assumptions[index][1];
-            index = ArrayLib.indexOf(assumptions, 0, "Selling Commission");
-            var sellingCommission = assumptions[index][1];
+            var grossSales = Number(revenue.sales[0]);
+            var preSales = Number(revenue.sales[1]);
+            var salesPerMonth = Number(revenue.sales[2]);
+            var listingCommission = Number(revenue.sales[3]);
+            var sellingCommission = Number(revenue.sales[4]);
 
         // earnest money
-            index = ArrayLib.indexOf(assumptions, 0, "First EM Deposit");
-            var firstEMPercent = assumptions[index][1];
-            var firstEMDate = assumptions[index][2];
+            var firstEMPercent = Number(revenue.earnestMoney[0][0]);
+            var firstEMDate = revenue.earnestMoney[0][1];
             var firstEMDepositMonth = monthDiff(projectStartDate,new Date(firstEMDate));
 
-            index = ArrayLib.indexOf(assumptions, 0, "Second EM Deposit");
-            var secondEMPercent = assumptions[index][1];
-            var secondEMDepositTask = assumptions[index][3];
+            var secondEMPercent = Number(revenue.earnestMoney[1][0]);
+            var secondEMDepositTask = revenue.earnestMoney[1][2]; // may not be a task, could be a month
 
-            index = ArrayLib.indexOf(assumptions, 0, "Third EM Deposit");
-            var thirdEMPercent = assumptions[index][1];
-            var thirdEMDepositTask = assumptions[index][3];
+            var thirdEMPercent = Number(revenue.earnestMoney[2][0]);
+            var thirdEMDepositTask = revenue.earnestMoney[2][2];
 
         // condo construction
-            index = ArrayLib.indexOf(assumptions, 0, "Construction Cost");
-            var constCost = assumptions[index][1];
-            index = ArrayLib.indexOf(assumptions, 0, "Construction Management");
-            var constMgmtPercent = assumptions[index][1];
-            index = ArrayLib.indexOf(assumptions, 0, "Contingency");
-            var contingencyPercent = assumptions[index][1];
-            index = ArrayLib.indexOf(assumptions, 0, "Schedule Tab Name");
-            var scheduleTabName = assumptions[index][1];
+            var constCost = Number(construction.condominiums[0]);
+            var constMgmtPercent = Number(construction.condominiums[1]);
+            var contingencyPercent = Number(construction.condominiums[2]);
+            var scheduleTabName = construction.condominiums[3];
 
     // project duration
         var earliestStartMilliseconds,earliestFinishMilliseconds,earliestFinish,eariestStart;
@@ -413,39 +401,28 @@ function updateProforma() {
 
     // expense
 
-        var expenseRowNum = ArrayLib.indexOf(assumptions, 0, "EXPENSE",true);
-        var loansRowNum = ArrayLib.indexOf(assumptions, 0, "LOANS",true);
         var arrayTemp=[],historical,expenseArray=[],j,remaining,type,startDate,milestone,monthlyAmt,startFinish,duration;
-
+        var land = expenses.land;
         rowNum = 23;
 
-        for (i = expenseRowNum + 1; i < loansRowNum; i++) { // loop through EXPENSE items in the assumptions array
+        sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('  @').setFontSize(11).setFontWeight('bold').setValue("Land");
+        rowNum ++;
 
-            rowData = assumptions[i];
-            label = rowData[0];
-            historical = rowData[1];
-            remaining = rowData[2];
-            type = rowData[3];
-            startDate = rowData[4];
-            milestone = rowData[5];
-            startFinish = rowData[6];
-            duration = rowData[7];
+        for (i =0; i < land.length; i++) {
+
+            rowData = land[i];
+            label = land[i][0];
+            historical = Number(land[i][1]);
+            remaining = Number(land[i][2]);
+            type = land[i][3];
+            startDate = land[i][4];
+            milestone = land[i][5];
+            startFinish = land[i][6];
+            duration = Number(land[i][7]);
             if (!duration) duration = 1;
             total = 0;
 
-
             if (!label && !historical && !remaining) continue;
-            if (label && !historical && !remaining) {
-                arrayTemp = [...arrayTemplate];
-                arrayTemp.unshift('');
-                arrayTemp.unshift('');
-                arrayTemp.unshift(label.trim());
-                sheet.getRange(rowNum,2,1,projectDuration + 3).setFontSize(10).setNumberFormat('  @').setHorizontalAlignment('right').setValues([arrayTemp]);
-                sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('  @').setFontSize(11).setFontWeight('bold');
-                rowNum ++;
-                arrayTemp = [];
-                continue;
-            }
 
             arrayTemp = [...arrayTemplate];
 
@@ -619,27 +596,419 @@ function updateProforma() {
             sheet.getRange(rowNum,2,1,projectDuration + 3).setNumberFormat("#,##0").setFontSize(10).setHorizontalAlignment('right').setValues([arrayTemp]);
             sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('    @');
             rowNum ++;
+        }
 
-            if (label.trim() == "Land Acquisition") {
+        // Condo Construction
 
-                sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('  @').setFontSize(11).setFontWeight('bold').setValue('Condo Construction');
-                rowNum ++;
+        sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('  @').setFontSize(11).setFontWeight('bold').setValue('Condo Construction');
+        rowNum ++;
 
-                sheet.getRange(rowNum,2,1,projectDuration + 3).setNumberFormat("#,##0").setFontSize(10).setHorizontalAlignment('right').setValues([condoConstCost]);
-                sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('    @');
-                rowNum ++;
+        sheet.getRange(rowNum,2,1,projectDuration + 3).setNumberFormat("#,##0").setFontSize(10).setHorizontalAlignment('right').setValues([condoConstCost]);
+        sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('    @');
+        rowNum ++;
 
-                sheet.getRange(rowNum,2,1,projectDuration + 3).setNumberFormat("#,##0").setFontSize(10).setHorizontalAlignment('right').setValues([contingency]);
-                sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('    @');
-                rowNum ++;
+        sheet.getRange(rowNum,2,1,projectDuration + 3).setNumberFormat("#,##0").setFontSize(10).setHorizontalAlignment('right').setValues([contingency]);
+        sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('    @');
+        rowNum ++;
 
-                sheet.getRange(rowNum,2,1,projectDuration + 3).setNumberFormat("#,##0").setFontSize(10).setHorizontalAlignment('right').setValues([constMgmt]);
-                sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('    @');
-                rowNum ++;
+        sheet.getRange(rowNum,2,1,projectDuration + 3).setNumberFormat("#,##0").setFontSize(10).setHorizontalAlignment('right').setValues([constMgmt]);
+        sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('    @');
+        rowNum ++;
+
+        // hard costs
+        var hardCosts = expenses.hardCosts;
+
+        sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('  @').setFontSize(11).setFontWeight('bold').setValue("Hard Costs");
+        rowNum ++;
+
+        for (i = 0; i < hardCosts.length; i++) {
+
+            rowData = hardCosts[i];
+            label = hardCosts[i][0];
+            historical = Number(hardCosts[i][1]);
+            remaining = Number(hardCosts[i][2]);
+            type = hardCosts[i][3];
+            startDate = hardCosts[i][4];
+            milestone = hardCosts[i][5];
+            startFinish = hardCosts[i][6];
+            duration = Number(hardCosts[i][7]);
+            if (!duration) duration = 1;
+            total = 0;
+
+            if (!label && !historical && !remaining) continue;
+
+            arrayTemp = [...arrayTemplate];
+
+            switch(type) {
+
+                case 'lump sum':
+
+                    if (startDate) {
+
+                        if (startDate == 'now' || (!startDate && !milestone)) {
+
+                            if (duration > 0) {
+                                monthlyAmt = remaining / duration;
+                                if (!historical) {
+                                    for (k = 0; k < duration; k++) {
+                                        arrayTemp[k+1] = monthlyAmt;
+                                        total += monthlyAmt;
+                                        totalExpense[k+1] += arrayTemp[k+1];
+                                    }
+
+                                } else {
+                                   for (k = 0; k < duration; k++) {
+                                        arrayTemp[k] = monthlyAmt;
+                                        total += monthlyAmt;
+                                        totalExpense[k] += arrayTemp[k];
+                                    }
+                                }
+                            } else if (!duration || duration == 1) {
+                                startMonth = monthDiff(projectStartDate,new Date(startDate)) + 1;
+                                arrayTemp[startMonth + 1] = remaining;
+                                total = remaining;
+                                totalExpense[startMonth + 1] += arrayTemp[startMonth + 1];
+                            }
+
+                        } else if (startDate) {
+
+                            if (duration > 0) {
+
+                                monthlyAmt = remaining / duration;
+                                startMonth = monthDiff(projectStartDate,new Date(startDate)) + 1;
+
+                                for (j = 0; j < duration; j++) {
+                                    arrayTemp[startMonth + j] = monthlyAmt;
+                                    total += monthlyAmt;
+                                    totalExpense[startMonth + j] += arrayTemp[startMonth + j];
+                                }
+
+                            } else if (!duration) {
+                                startMonth = monthDiff(projectStartDate,new Date(startDate)) + 1;
+                                arrayTemp[startMonth + 1] = remaining;
+                                total = remaining;
+                                totalExpense[startMonth + 1] += arrayTemp[startMonth + 1];
+
+                            }
+                            else if (duration < 0) {
+                                // shouldn't get here
+                            }
+                        }
+
+                    } else if (milestone) {
+                        index = ArrayLib.indexOf(scheduleData,1,milestone);
+                        if (index == -1) continue;
+                        monthlyAmt = remaining / duration;
+
+                        startDate = new Date(scheduleData[index][earliestStartIndex]);
+                        endDate = new Date(scheduleData[index][earliestFinishIndex]);
+
+                        startMonth = monthDiff(projectStartDate,startDate);
+                        endMonth = monthDiff(projectStartDate,endDate);
+
+                        if (startFinish == 'start') {
+                            for (j = 0; j < duration; j++) {
+                                arrayTemp[startMonth + j] = monthlyAmt;
+                                total += arrayTemp[startMonth + j];
+                                totalExpense[startMonth + j] += arrayTemp[startMonth + j];
+                            }
+
+
+                        } else if (startFinish == 'finish') {
+
+                            if (duration < 0) {
+                                duration *= -1;
+                                for (j = 0; j < duration; j++) {
+                                    arrayTemp[endMonth - j + 1] = monthlyAmt * -1;
+                                    total += monthlyAmt * -1;
+                                    totalExpense[endMonth - j + 1] += arrayTemp[endMonth - j + 1];
+                                }
+
+                            } else if (duration > 0) {
+                                for (j = 0; j < duration; j++) {
+                                    arrayTemp[startMonth + j + 1] = monthlyAmt;
+                                    total += monthlyAmt;
+                                    totalExpense[startMonth + j + 1] += arrayTemp[startMonth + j + 1];
+                                }
+                            }
+                        }
+                    } else {
+                        monthlyAmt = remaining / duration;
+                        if (!monthlyAmt) monthlyAmt = null;
+                        for (k = 0; k < duration; k++) {
+                            arrayTemp[k] = monthlyAmt;
+                            total += monthlyAmt;
+                            totalExpense[k] += arrayTemp[k];
+                        }
+                    }
+                break;
+
+                case 'monthly':
+
+                    if (!startDate && !milestone) {
+                        for (j = 0; j < projectDuration; j++) {
+                            arrayTemp[j] = remaining;
+                            total += remaining;
+                            totalExpense[j] += arrayTemp[j];
+                        }
+                    } else if (milestone) {
+                        index = ArrayLib.indexOf(scheduleData,1,milestone);
+                        monthlyAmt = remaining / duration;
+
+                        startDate = new Date(scheduleData[index][earliestStartIndex]);
+                        endDate = new Date(scheduleData[index][earliestFinishIndex]);
+
+                        startMonth = monthDiff(projectStartDate,startDate);
+                        endMonth = monthDiff(projectStartDate,endDate);
+                        if (startFinish == 'start') {
+                            startMonth ++; // delay one month for billing
+                            for (j = startMonth; j < projectDuration; j++) {
+                                arrayTemp[j] = remaining;
+                                total += arrayTemp[j];
+                                totalExpense[j] += arrayTemp[j];
+                            }
+                        } else if (startFinish == 'finish') {
+                            endMonth ++; // delay one month for billing
+                            for (j = endMonth; j < projectDuration; j++) {
+                                arrayTemp[j] = remaining;
+                                total += arrayTemp[j];
+                                totalExpense[j] += arrayTemp[j];
+                            }
+                        }
+                    } else if (startDate) {
+                        startMonth = monthDiff(projectStartDate,new Date(startDate)) + 1; // delay 1 month for billing
+                        for (j = startMonth; j < projectDuration; j++) {
+                            arrayTemp[j] = remaining;
+                            total += remaining;
+                            totalExpense[j] += arrayTemp[j];
+                        }
+                    }
+                break;
+
+                case '% of sales':
+
+                    var percentOfSales = remaining;
+                    for (j = 0; j < projectDuration; j++) {
+                        if (sales[j+3]) {
+                            arrayTemp[j] = percentOfSales * sales[j+3];
+                        }
+                        total += arrayTemp[j];
+                        totalExpense[j] += arrayTemp[j];
+
+                    }
+                break;
+
+                default:
             }
+
+            arrayTemp.unshift(historical);
+            arrayTemp.unshift(historical + total);
+            arrayTemp.unshift(label.trim());
+
+            if (historical) totalHistoricalExpense += historical;
+            sheet.getRange(rowNum,2,1,projectDuration + 3).setNumberFormat("#,##0").setFontSize(10).setHorizontalAlignment('right').setValues([arrayTemp]);
+            sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('    @');
+            rowNum ++;
+        }
+
+        // soft costs
+        var softCosts = expenses.softCosts;
+
+        sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('  @').setFontSize(11).setFontWeight('bold').setValue("Soft Costs");
+        rowNum ++;
+
+        for (i =0; i < softCosts.length; i++) {
+
+            rowData = softCosts[i];
+            label = softCosts[i][0];
+            historical = Number(softCosts[i][1]);
+            remaining = Number(softCosts[i][2]);
+            type = softCosts[i][3];
+            startDate = softCosts[i][4];
+            milestone = softCosts[i][5];
+            startFinish = softCosts[i][6];
+            duration = Number(softCosts[i][7]);
+            if (!duration) duration = 1;
+            total = 0;
+
+            if (!label && !historical && !remaining) continue;
+
+            arrayTemp = [...arrayTemplate];
+
+            switch(type) {
+
+                case 'lump sum':
+
+                    if (startDate) {
+
+                        if (startDate == 'now' || (!startDate && !milestone)) {
+
+                            if (duration > 0) {
+                                monthlyAmt = remaining / duration;
+                                if (!historical) {
+                                    for (k = 0; k < duration; k++) {
+                                        arrayTemp[k+1] = monthlyAmt;
+                                        total += monthlyAmt;
+                                        totalExpense[k+1] += arrayTemp[k+1];
+                                    }
+
+                                } else {
+                                   for (k = 0; k < duration; k++) {
+                                        arrayTemp[k] = monthlyAmt;
+                                        total += monthlyAmt;
+                                        totalExpense[k] += arrayTemp[k];
+                                    }
+                                }
+                            } else if (!duration || duration == 1) {
+                                startMonth = monthDiff(projectStartDate,new Date(startDate)) + 1;
+                                arrayTemp[startMonth + 1] = remaining;
+                                total = remaining;
+                                totalExpense[startMonth + 1] += arrayTemp[startMonth + 1];
+                            }
+
+                        } else if (startDate) {
+
+                            if (duration > 0) {
+
+                                monthlyAmt = remaining / duration;
+                                startMonth = monthDiff(projectStartDate,new Date(startDate)) + 1;
+                                for (j = 0; j < duration; j++) {
+                                    arrayTemp[startMonth + j] = monthlyAmt;
+                                    total += monthlyAmt;
+                                    totalExpense[startMonth + j] += arrayTemp[startMonth + j];
+                                }
+
+                            } else if (!duration) {
+                                startMonth = monthDiff(projectStartDate,new Date(startDate)) + 1;
+                                arrayTemp[startMonth + 1] = remaining;
+                                total = remaining;
+                                totalExpense[startMonth + 1] += arrayTemp[startMonth + 1];
+
+                            }
+                            else if (duration < 0) {
+                                // shouldn't get here
+                            }
+                        }
+
+                    } else if (milestone) {
+                        index = ArrayLib.indexOf(scheduleData,1,milestone);
+                        if (index == -1) continue;
+                        monthlyAmt = remaining / duration;
+
+                        startDate = new Date(scheduleData[index][earliestStartIndex]);
+                        endDate = new Date(scheduleData[index][earliestFinishIndex]);
+
+                        startMonth = monthDiff(projectStartDate,startDate);
+                        endMonth = monthDiff(projectStartDate,endDate);
+
+                        if (startFinish == 'start') {
+                            for (j = 0; j < duration; j++) {
+                                arrayTemp[startMonth + j] = monthlyAmt;
+                                total += arrayTemp[startMonth + j];
+                                totalExpense[startMonth + j] += arrayTemp[startMonth + j];
+                            }
+
+
+                        } else if (startFinish == 'finish') {
+
+                            if (duration < 0) {
+                                duration *= -1;
+                                for (j = 0; j < duration; j++) {
+                                    arrayTemp[endMonth - j + 1] = monthlyAmt * -1;
+                                    total += monthlyAmt * -1;
+                                    totalExpense[endMonth - j + 1] += arrayTemp[endMonth - j + 1];
+                                }
+
+                            } else if (duration > 0) {
+                                for (j = 0; j < duration; j++) {
+                                    arrayTemp[startMonth + j + 1] = monthlyAmt;
+                                    total += monthlyAmt;
+                                    totalExpense[startMonth + j + 1] += arrayTemp[startMonth + j + 1];
+                                }
+                            }
+                        }
+                    } else {
+                        monthlyAmt = remaining / duration;
+                        if (!monthlyAmt) monthlyAmt = null;
+                        for (k = 0; k < duration; k++) {
+                            arrayTemp[k] = monthlyAmt;
+                            total += monthlyAmt;
+                            totalExpense[k] += arrayTemp[k];
+                        }
+                    }
+                break;
+
+                case 'monthly':
+
+                    if (!startDate && !milestone) {
+                        for (j = 0; j < projectDuration; j++) {
+                            arrayTemp[j] = remaining;
+                            total += remaining;
+                            totalExpense[j] += arrayTemp[j];
+                        }
+                    } else if (milestone) {
+                        index = ArrayLib.indexOf(scheduleData,1,milestone);
+                        monthlyAmt = remaining / duration;
+
+                        startDate = new Date(scheduleData[index][earliestStartIndex]);
+                        endDate = new Date(scheduleData[index][earliestFinishIndex]);
+
+                        startMonth = monthDiff(projectStartDate,startDate);
+                        endMonth = monthDiff(projectStartDate,endDate);
+                        if (startFinish == 'start') {
+                            startMonth ++; // delay one month for billing
+                            for (j = startMonth; j < projectDuration; j++) {
+                                arrayTemp[j] = remaining;
+                                total += arrayTemp[j];
+                                totalExpense[j] += arrayTemp[j];
+                            }
+                        } else if (startFinish == 'finish') {
+                            endMonth ++; // delay one month for billing
+                            for (j = endMonth; j < projectDuration; j++) {
+                                arrayTemp[j] = remaining;
+                                total += arrayTemp[j];
+                                totalExpense[j] += arrayTemp[j];
+                            }
+                        }
+                    } else if (startDate) {
+                        startMonth = monthDiff(projectStartDate,new Date(startDate)) + 1; // delay 1 month for billing
+                        for (j = startMonth; j < projectDuration; j++) {
+                            arrayTemp[j] = remaining;
+                            total += remaining;
+                            totalExpense[j] += arrayTemp[j];
+                        }
+                    }
+                break;
+
+                case '% of sales':
+
+                    var percentOfSales = remaining;
+                    for (j = 0; j < projectDuration; j++) {
+                        if (sales[j+3]) {
+                            arrayTemp[j] = percentOfSales * sales[j+3];
+                        }
+                        total += arrayTemp[j];
+                        totalExpense[j] += arrayTemp[j];
+
+                    }
+                break;
+
+                default:
+            }
+
+            arrayTemp.unshift(historical);
+            arrayTemp.unshift(historical + total);
+            arrayTemp.unshift(label.trim());
+
+            if (historical) totalHistoricalExpense += historical;
+
+            sheet.getRange(rowNum,2,1,projectDuration + 3).setNumberFormat("#,##0").setFontSize(10).setHorizontalAlignment('right').setValues([arrayTemp]);
+            sheet.getRange(rowNum,2).setHorizontalAlignment('left').setNumberFormat('    @');
+            rowNum ++;
         }
 
         rowNum ++;
+
         var totalExpenseTotal = 0;
         for (i = 0; i < totalExpense.length; i++) {
             if (totalExpense[i]) totalExpenseTotal += totalExpense[i];
@@ -746,21 +1115,18 @@ function updateProforma() {
     // loans
 
         // assumptions
-            sheet = ss.getSheetByName('assumptions');
-            loansRowNum += 4;
 
-            var acquisitionLoanBal = sheet.getRange(loansRowNum,3).getValue();
-            var acquisitionLoanRate = sheet.getRange(loansRowNum + 1, 3).getValue();
-            var acquisitionIntToDate = sheet.getRange(loansRowNum + 2, 3).getValue();
+            var acquisitionLoanBal = Number(loans.acquisition[0]);
+            var acquisitionLoanRate = Number(loans.acquisition[1]);
+            var acquisitionIntToDate = Number(loans.acquisition[2]);
 
-            var constLoanEstAmt = sheet.getRange(loansRowNum + 4, 3).getValue();
-            var constLoanStartDate = sheet.getRange(loansRowNum + 5, 4).getValue();
-            var constLoanStartMilestone = sheet.getRange(loansRowNum + 5, 5).getValue();
-            var constLoanRate = sheet.getRange(loansRowNum + 6, 3).getValue();
+            var constLoanEstAmt = Number(loans.construction[0]);
+            var constLoanRate = Number(loans.construction[1]);
+            var constLoanStartDate = loans.construction[2];
 
-            var constLoanBrokerFeeData = sheet.getRange(loansRowNum + 7,2,1,5).getValues();
-            var constLoanOriginationFeeData = sheet.getRange(loansRowNum + 8,2,1,5).getValues();
-            var constLoanCloseoutFeeData = sheet.getRange(loansRowNum + 9,2,1,5).getValues();
+            var constLoanBrokerFeeData = loans.loanFees[0];
+            var constLoanOriginationFeeData = loans.loanFees[1];
+            var constLoanCloseoutFeeData = loans.loanFees[2];
 
         // acquisition loan
 
@@ -850,9 +1216,9 @@ function updateProforma() {
             var constLoanBrokerFee = constLoanEstAmt * constLoanBrokerFee;
 
             // origination fee
-                rowData = constLoanOriginationFeeData[0];
-                var originationFeeLabel = rowData[0];
-                var originationFeeAmt = constLoanEstAmt * rowData[1];
+                rowData = constLoanOriginationFeeData;
+                //var originationFeeLabel = rowData[0];
+                var originationFeeAmt = constLoanEstAmt * Number(rowData[0]);
                 var originationFeeDate = rowData[2];
                 var originationFeeMilestone = rowData[3];
                 var originationFeeStartFinish = rowData[4];
@@ -875,9 +1241,9 @@ function updateProforma() {
                 constOriginationFee[month] = originationFeeAmt;
 
             // broker fee
-                rowData = constLoanBrokerFeeData[0];
-                var brokerFeeLabel = rowData[0];
-                var brokerFeeAmt = constLoanEstAmt * rowData[1];
+                rowData = constLoanBrokerFeeData;
+                //var brokerFeeLabel = rowData[0];
+                var brokerFeeAmt = constLoanEstAmt * Number(rowData[0]);
                 var brokerFeeDate = rowData[2];
                 var brokerFeeMilestone = rowData[3];
                 var brokerFeeStartFinish = rowData[4];
@@ -900,9 +1266,9 @@ function updateProforma() {
                 constBrokerFee[month] = brokerFeeAmt;
 
             // closeout fee
-                rowData = constLoanCloseoutFeeData[0];
-                var closeoutFeeLabel = rowData[0];
-                var closeoutFeeAmt = constLoanEstAmt * rowData[1];
+                rowData = constLoanCloseoutFeeData;
+                //var closeoutFeeLabel = rowData[0];
+                var closeoutFeeAmt = constLoanEstAmt * Number(rowData[0]);
                 var closeoutFeeDate = rowData[2];
                 var closeoutFeeMilestone = rowData[3];
                 var closeoutFeeStartFinish = rowData[4];
@@ -965,7 +1331,6 @@ function updateProforma() {
                 }
 
             }
-
 
             constOriginationFee.unshift(null);
             constOriginationFee.unshift(originationFeeAmt);
