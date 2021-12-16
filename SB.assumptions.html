@@ -14,18 +14,6 @@ var softCosts = expenses.softCosts;
 var hardCosts = expenses.hardCosts;
 var land = expenses.land;
 
-// console.log("softCosts = " + JSON.stringify(softCosts));
-
-// expenses.softCosts = [
-// 	["Alpha Soft Cost",'','','','','','',''],
-// 	["Beta Soft Cost",'','','','','','',''],
-// 	["Charlie Soft Cost",'','','','','','','']
-// ]
-
-// softCosts = expenses.softCosts;
-
-// documentProperties.setProperty('expenses', JSON.stringify(expenses));
-
 // expenses
 
 	// ADD
@@ -233,85 +221,85 @@ var land = expenses.land;
 	var displayValue = '';
 
 	// acquisition
-	var displayAcquisition = [];
-	if (acquisition.length) {
-		displayAcquisition = [];
-		for (var i = 0; i < acquisition.length; i++) {
-			if (i == 0 || i == 2) {
-				displayValue = formatNumber(acquisition[i]);
-			}
-			if (i == 1) {
-				if (acquisition[i]) {
-					displayValue = acquisition[i] * 100 + '%';
-				} else {
-					displayValue = '';
+		var displayAcquisition = [];
+		if (acquisition.length) {
+			displayAcquisition = [];
+			for (var i = 0; i < acquisition.length; i++) {
+				if (i == 0 || i == 2) {
+					displayValue = formatNumber(acquisition[i]);
 				}
+				if (i == 1) {
+					if (acquisition[i]) {
+						displayValue = acquisition[i] * 100 + '%';
+					} else {
+						displayValue = '';
+					}
+				}
+				displayAcquisition.push(displayValue);
 			}
-			displayAcquisition.push(displayValue);
+		} else {
+			for (var j = 0; j < 3; j++) {
+				displayAcquisition.push('');
+			}
 		}
-	} else {
-		for (var j = 0; j < 3; j++) {
-			displayAcquisition.push('');
-		}
-	}
 
 	// construction
-	var displayConstruction = [];
-	if (construction.length) {
-		displayConstruction = [];
-		for (var i = 0; i < construction.length; i++) {
+		var displayConstruction = [];
+		if (construction.length) {
+			displayConstruction = [];
+			for (var i = 0; i < construction.length; i++) {
 
-			if (i == 0) {
-				displayValue = formatNumber(construction[i]);
-			} else if (i == 1) {
-				if (construction[i]) {
-					displayValue = construction[i] * 100 + '%';
+				if (i == 0) {
+					displayValue = formatNumber(construction[i]);
+				} else if (i == 1) {
+					if (construction[i]) {
+						displayValue = construction[i] * 100 + '%';
+					} else {
+						displayValue = '';
+					}
 				} else {
-					displayValue = '';
+					if (!construction[i]) {
+						displayValue = '';
+					} else {
+						displayValue = construction[i];
+					}
 				}
-			} else {
-				if (!construction[i]) {
-					displayValue = '';
-				} else {
-					displayValue = construction[i];
-				}
+				displayConstruction.push(displayValue);
 			}
-			displayConstruction.push(displayValue);
+		} else {
+			for (var j = 0; j < 3; j++) {
+				displayConstruction.push('');
+			}
 		}
-	} else {
-		for (var j = 0; j < 3; j++) {
-			displayConstruction.push('');
-		}
-	}
 
 	// loanFees
-	var displayLoanFees = [];
-	for (var i = 0; i < 4; i++) {
-		displayLoanFees[i] = [];
-		for (var j = 0; j < 5; j++) {
-			var displayValue = '';
-			if (j == 0) {
-				if (loanFees[i][0]) {
-					displayValue = loanFees[i][0] * 100 + '%';
+		var displayLoanFees = [];
+		for (var i = 0; i < 4; i++) {
+			displayLoanFees[i] = [];
+			for (var j = 0; j < 5; j++) {
+				var displayValue = '';
+				if (j == 0) {
+					if (loanFees[i][0]) {
+						displayValue = loanFees[i][0] * 100 + '%';
+					} else {
+						displayValue = '';
+					}
+				} else if (j == 1) {
+					if (loanFees[i][1]) {
+						displayValue = formatNumber(loanFees[i][1]);
+					} else {
+						displayValue = '';
+					}
 				} else {
-					displayValue = '';
+					if (loanFees[i][j]) {
+						displayValue = loanFees[i][j];
+					} else {
+						displayValue = '';
+					}
 				}
-			} else if (j == 1) {
-				if (loanFees[i][1]) {
-					displayValue = formatNumber(loanFees[i][1]);
-				} else {
-					displayValue = '';
-				}
-			} else {
-				if (loanFees[i][j]) {
-					displayValue = loanFees[i][j];
-				} else {
-					displayValue = '';
-				}
+				displayLoanFees[i].push(displayValue);
 			}
-			displayLoanFees[i].push(displayValue);
 		}
-	}
 
 function formatNumber(number) {
     if (!number) return '';

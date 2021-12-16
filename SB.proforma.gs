@@ -1435,7 +1435,7 @@ function updateProforma() {
             ui.alert('Could not find "Summary" sheet');
             return;
         }
-        sheet.activate();
+        //sheet.activate();
         sheet.getRange('A3').setValue(headerDate);
         sheet.getRange('C6').setValue(totalSales[1]);
         sheet.getRange('C7').setValue(netRevenue[1]);
